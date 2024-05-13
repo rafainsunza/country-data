@@ -13,10 +13,51 @@
     />
     <title>Frontend Mentor | Country Data</title>
 
+    <script
+      src="https://kit.fontawesome.com/c7fc662f6d.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="./static/css/reset.css" />
     <link rel="stylesheet" href="./static/css/style.css" />
   </head>
   <body>
+    <header>
+      <h1>Where in the world?</h1>
+      <div class="contrast-button-container">
+        <img src="./static/img/halfmoon-icon.svg" alt="Dark mode button" />
+        <button class="contrast-button">Dark Mode</button>
+      </div>
+    </header>
+    <main>
+      <div class="form-container">
+        <form action="#">
+          <div class="search-container">
+            <label for="search" hidden>Search for a country</label>
+            <img
+              src="./static/img/search-icon.svg"
+              class="search-icon"
+              alt="Search icon"
+            />
+            <input
+              type="search"
+              id="search"
+              name="search"
+              placeholder="Search for a country"
+            />
+          </div>
+
+          <div class="filter-container">
+            <label for="region" hidden>Filter by Region</label>
+            <select name="region" id="region">
+              <option value="" disabled hidden>Filter by Region</option>
+            </select>
+          </div>
+        </form>
+      </div>
+
+      <div class="country-card-container"></div>
+    </main>
     <script src="./static/js/main.js"></script>
   </body>
 </html>
