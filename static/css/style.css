@@ -1,3 +1,81 @@
+img {
+  width: 100px;
+}
 
+html {
+  font-family: "Nunito Sans";
+  font-size: 14px;
+  font-weight: 300;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 15px;
+  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+}
+header h1 {
+  font-size: 16px;
+  font-weight: 800;
+}
+header .contrast-button-container {
+  display: flex;
+  align-items: center;
+}
+header .contrast-button-container img {
+  width: 14px;
+  margin: 0 5px;
+}
+header .contrast-button-container button {
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+}
+
+main {
+  padding: 30px 20px;
+}
+main .search-container {
+  position: relative;
+}
+main .search-container input {
+  width: 335px;
+  height: 45px;
+  padding-left: 60px;
+  color: hsl(0, 0%, 52%);
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+}
+main .search-container img {
+  width: 14px;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+main .filter-container {
+  margin: 40px 0;
+  position: relative;
+}
+main .filter-container select {
+  width: 200px;
+  height: 45px;
+  padding-left: 15px;
+  color: hsl(200, 15%, 8%);
+  background-color: hsl(0, 0%, 100%);
+  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  border: none;
+  border-radius: 5px;
+  appearance: none;
+}
+main .filter-container img {
+  width: 10px;
+  position: absolute;
+  left: 175px;
+  top: 50%;
+  transform: translateY(-50%);
+}
 
 /*# sourceMappingURL=style.css.map */
