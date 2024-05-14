@@ -1,8 +1,13 @@
 const countryCardContainer = document.querySelector('.country-card-container');
 
-const createCountryCards = () => {
-    fetch('./static/data/data.json')
+const fetchCountries = () => {
+    return fetch('./static/data/data.json')
         .then((response) => response.json())
+        .then((data) => data)
+}
+
+const createCountryCards = () => {
+    fetchCountries()
         .then((data) => {
             data.forEach((country) => {
                 const div = document.createElement('div');
@@ -32,7 +37,6 @@ const createCountryCards = () => {
         })
 }
 
-
 const createElement = (ul, country, category) => {
     const li = document.createElement('li');
     li.classList.add('card-li');
@@ -49,4 +53,18 @@ const createElement = (ul, country, category) => {
     li.appendChild(spanAfter);
 
 }
+
+const setCountriesToSelect = () => {
+    const select = document.querySelector('select');
+    fetchCountries()
+        .then((data) => {
+            data.forEach((country) => {
+                const option = document.createElement('option');
+                option.textContent = country.name;
+                select.appendChild(option);
+            })
+        })
+}
+
+setCountriesToSelect();
 createCountryCards();
