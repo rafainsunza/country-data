@@ -70,6 +70,10 @@ main .filter-container select {
   border-radius: 5px;
   appearance: none;
 }
+main .filter-container select option {
+  border: none;
+  outline: none;
+}
 main .filter-container img {
   width: 10px;
   position: absolute;
