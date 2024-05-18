@@ -1,4 +1,5 @@
 const countryCardContainer = document.querySelector('.country-card-container');
+const selectDropDown = document.querySelector('.select-dropdown');
 
 const fetchCountries = () => {
     return fetch('./static/data/data.json')
@@ -54,17 +55,36 @@ const createElement = (ul, country, category) => {
 
 }
 
-const setCountriesToSelect = () => {
-    const select = document.querySelector('select');
+const addRegionsToSelectDropdown = () => {
+    const regions = [];
     fetchCountries()
         .then((data) => {
             data.forEach((country) => {
-                const option = document.createElement('option');
-                option.textContent = country.name;
-                select.appendChild(option);
+                if (!regions.includes(country.region)) {
+                    regions.push(country.region);
+                }
+            })
+
+            regions.forEach((region) => {
+                const li = document.createElement('li');
+                const input = document.createElement('input');
+                const label = document.createElement('label');
+
+                input.setAttribute('type', 'radio');
+                input.setAttribute('id', region.toLowerCase());
+                input.setAttribute('class', 'dropdown-input');
+                input.setAttribute('name', 'region');
+                label.textContent = region;
+                label.setAttribute('for', region.toLowerCase());
+
+                li.appendChild(input);
+                li.appendChild(label);
+                selectDropDown.appendChild(li);
             })
         })
+
+
 }
 
-setCountriesToSelect();
+addRegionsToSelectDropdown();
 createCountryCards();
