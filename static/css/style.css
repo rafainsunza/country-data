@@ -12,7 +12,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 30px 15px;
+  padding: 30px 20px;
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
 }
 header h1 {
@@ -23,9 +23,10 @@ header .contrast-button-container {
   display: flex;
   align-items: center;
 }
-header .contrast-button-container img {
-  width: 14px;
-  margin: 0 5px;
+header .contrast-button-container .fa-moon {
+  padding: 0 10px;
+  transform: rotate(-25deg);
+  font-size: 16px;
 }
 header .contrast-button-container button {
   background-color: hsl(0, 0%, 100%);
@@ -38,9 +39,9 @@ main {
 main .search-container {
   position: relative;
 }
-main .search-container input {
-  width: 335px;
-  height: 45px;
+main .search-container .search-input {
+  width: 100%;
+  height: 50px;
   padding-left: 60px;
   color: hsl(0, 0%, 52%);
   outline: none;
@@ -48,38 +49,46 @@ main .search-container input {
   border-radius: 5px;
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
 }
-main .search-container img {
-  width: 14px;
+main .search-container .fa-magnifying-glass {
   position: absolute;
-  left: 20px;
   top: 50%;
   transform: translateY(-50%);
+  padding-left: 20px;
+  color: hsl(0, 0%, 52%);
 }
-main .filter-container {
-  margin: 40px 0;
-  position: relative;
+main .custom-select {
+  margin: 40px 0 0 0;
 }
-main .filter-container select {
-  width: 200px;
-  height: 45px;
-  padding-left: 15px;
-  color: hsl(200, 15%, 8%);
-  background-color: hsl(0, 0%, 100%);
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
-  border: none;
-  border-radius: 5px;
-  appearance: none;
-}
-main .filter-container select option {
-  border: none;
+main .custom-select .select-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 60%;
+  height: 50px;
+  padding: 0 20px;
   outline: none;
+  border: none;
+  background-color: hsl(0, 0%, 100%);
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
 }
-main .filter-container img {
-  width: 10px;
-  position: absolute;
-  left: 175px;
-  top: 50%;
-  transform: translateY(-50%);
+main .custom-select .select-button .fa-chevron-down {
+  font-size: 8px;
+}
+main .custom-select .select-dropdown {
+  width: 60%;
+  padding: 10px 0;
+  margin-top: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  background-color: hsl(0, 0%, 100%);
+}
+main .custom-select .select-dropdown li {
+  height: 30px;
+  align-content: center;
+}
+main .custom-select .select-dropdown li .dropdown-input {
+  opacity: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -23,7 +23,7 @@ header
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 30px 15px
+    padding: 30px 20px
     box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
 
     h1
@@ -34,14 +34,14 @@ header
         display: flex 
         align-items: center 
 
-        img
-            width: 14px
-            margin: 0 5px
+        .fa-moon
+            padding: 0 10px
+            transform: rotate(-25deg)
+            font-size: 16px
 
         button 
             background-color: $lightElement-DarkText
             border: none
-
 
 main
     padding: 30px 20px 
@@ -49,9 +49,9 @@ main
     .search-container
         position: relative
 
-        input
-            width: 335px
-            height: 45px
+        .search-input
+            width: 100%
+            height: 50px
             padding-left: 60px
             color: $lightInput
             outline: none
@@ -59,40 +59,50 @@ main
             border-radius: 5px
             box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
 
-        img
-            width: 14px
+        .fa-magnifying-glass
             position: absolute
-            left: 20px
             top: 50%
             transform: translateY(-50%)
+            padding-left: 20px
+            color: $lightInput
 
-    .filter-container
-        margin: 40px 0 
-        position: relative
+    .custom-select
+        margin: 40px 0 0 0 
         
-        select 
-            width: 200px 
-            height: 45px
-            padding-left: 15px
-            color: $lightText
-            background-color: $lightElement-DarkText
-            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+        .select-button  
+            display: flex
+            align-items: center
+            justify-content: space-between
+            width: 60%
+            height: 50px
+            padding: 0 20px
+            outline: none
             border: none
+            background-color: $lightElement-DarkText
             border-radius: 5px
-            appearance: none
+            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
 
-            option
-                border: none
-                outline: none
+            .fa-chevron-down
+                font-size: 8px
 
-        img 
-            width: 10px
-            position: absolute
-            left: 175px
-            top: 50%
-            transform: translateY(-50%)
-            
-          
+        .select-dropdown
+            width: 60%
+            padding: 10px 0
+            margin-top: 5px
+            border-radius: 5px
+            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+            background-color: $lightElement-DarkText
+
+            li
+                height: 30px
+                align-content: center
+
+                .dropdown-input
+                    opacity: 0
+
+        
+        
+
 
            
             
