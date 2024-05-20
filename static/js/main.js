@@ -1,41 +1,11 @@
 const countryCardContainer = document.querySelector('.country-card-container');
 const selectDropDown = document.querySelector('.select-dropdown');
+const selectBtn = document.querySelector('.select-button');
 
 const fetchCountries = () => {
     return fetch('./static/data/data.json')
         .then((response) => response.json())
         .then((data) => data)
-}
-
-const createCountryCards = () => {
-    fetchCountries()
-        .then((data) => {
-            data.forEach((country) => {
-                const div = document.createElement('div');
-                div.classList.add('country-card');
-                countryCardContainer.appendChild(div);
-
-                const img = document.createElement('img');
-                img.classList.add('country-flag');
-                img.setAttribute('src', country.flag);
-                div.appendChild(img);
-
-                const h2 = document.createElement('h2');
-                h2.classList.add('country-name');
-                h2.textContent = country.name;
-                div.appendChild(h2);
-
-                const ul = document.createElement('ul');
-                ul.classList.add('card-ul');
-                div.appendChild(ul);
-
-                createElement(ul, country.population.toLocaleString('en-US'), 'Population');
-                createElement(ul, country.region, 'Region');
-                createElement(ul, country.capital, 'Capital');
-
-            })
-
-        })
 }
 
 const createElement = (ul, country, category) => {
@@ -86,5 +56,92 @@ const addRegionsToSelectDropdown = () => {
 
 }
 
+const displayCountryCards = (countries) => {
+    if (countries instanceof Promise) {
+        countries
+            .then((data) => {
+                data.forEach((country) => {
+                    const div = document.createElement('div');
+                    div.classList.add('country-card');
+                    countryCardContainer.appendChild(div);
+
+                    const img = document.createElement('img');
+                    img.classList.add('country-flag');
+                    img.setAttribute('src', country.flag);
+                    div.appendChild(img);
+
+                    const h2 = document.createElement('h2');
+                    h2.classList.add('country-name');
+                    h2.textContent = country.name;
+                    div.appendChild(h2);
+
+                    const ul = document.createElement('ul');
+                    ul.classList.add('card-ul');
+                    div.appendChild(ul);
+
+                    createElement(ul, country.population.toLocaleString('en-US'), 'Population');
+                    createElement(ul, country.region, 'Region');
+                    createElement(ul, country.capital, 'Capital');
+
+                })
+
+            })
+    } else if (Array.isArray(countries)) {
+        countryCardContainer.innerHTML = '';
+        countries.forEach((country) => {
+            const div = document.createElement('div');
+            div.classList.add('country-card');
+            countryCardContainer.appendChild(div);
+
+            const img = document.createElement('img');
+            img.classList.add('country-flag');
+            img.setAttribute('src', country.flag);
+            div.appendChild(img);
+
+            const h2 = document.createElement('h2');
+            h2.classList.add('country-name');
+            h2.textContent = country.name;
+            div.appendChild(h2);
+
+            const ul = document.createElement('ul');
+            ul.classList.add('card-ul');
+            div.appendChild(ul);
+
+            createElement(ul, country.population.toLocaleString('en-US'), 'Population');
+            createElement(ul, country.region, 'Region');
+            createElement(ul, country.capital, 'Capital');
+
+        })
+    }
+
+}
+
+const filterByRegion = (event) => {
+    let input = event.target;
+    if (input.tagName === 'LI') {
+        input = input.firstChild
+    }
+
+    fetchCountries()
+        .then((data) => {
+            let filteredByRegion = data.filter((country) => country.region.toLowerCase() === input.id);
+
+            if (input.type === 'radio' && input.id !== 'all') {
+                displayCountryCards(filteredByRegion);
+            } else {
+                filteredByRegion = data;
+                displayCountryCards(filteredByRegion);
+            }
+        })
+
+    selectDropDown.classList.remove('active');
+}
+
 addRegionsToSelectDropdown();
-createCountryCards();
+displayCountryCards(fetchCountries());
+
+selectBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    selectDropDown.classList.toggle('active');
+});
+selectDropDown.addEventListener('click', filterByRegion);
