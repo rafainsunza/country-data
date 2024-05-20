@@ -1,6 +1,8 @@
 const countryCardContainer = document.querySelector('.country-card-container');
 const selectDropDown = document.querySelector('.select-dropdown');
 const selectBtn = document.querySelector('.select-button');
+const searchInput = document.querySelector('.search-input');
+const searchInputBtn = document.querySelector('.search-input-button');
 
 const fetchCountries = () => {
     return fetch('./static/data/data.json')
@@ -137,6 +139,40 @@ const filterByRegion = (event) => {
     selectDropDown.classList.remove('active');
 }
 
+const searchCountry = (event) => {
+    event.preventDefault();
+
+    const foundCountries = [];
+
+    fetchCountries()
+        .then((data) => {
+            data.forEach((country) => {
+                if (country.name.toLowerCase().includes(searchInput.value)) {
+                    foundCountries.push(country);
+                }
+            })
+
+            if (foundCountries.length > 0) {
+                searchInput.placeholder = 'Search for a country...'
+                searchInput.value = '';
+
+                displayCountryCards(foundCountries);
+            } else {
+                searchInput.placeholder = 'No countries found';
+                searchInput.value = '';
+                searchInput.focus();
+
+                displayCountryCards(foundCountries);
+            }
+
+        })
+}
+
+const restorePlaceholder = () => {
+    if (searchInput.value === '') {
+        searchInput.placeholder = 'Search for a country...'
+    }
+}
 addRegionsToSelectDropdown();
 displayCountryCards(fetchCountries());
 
@@ -144,4 +180,8 @@ selectBtn.addEventListener('click', (event) => {
     event.preventDefault();
     selectDropDown.classList.toggle('active');
 });
+
+searchInputBtn.addEventListener('click', searchCountry);
+searchInput.addEventListener('blur', restorePlaceholder);
 selectDropDown.addEventListener('click', filterByRegion);
+
