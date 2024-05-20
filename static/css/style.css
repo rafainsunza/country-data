@@ -6,6 +6,7 @@ html {
   font-family: "Nunito Sans";
   font-size: 14px;
   font-weight: 300;
+  color: hsl(200, 15%, 8%);
 }
 
 header {
@@ -58,6 +59,9 @@ main .search-container .search-input-button {
   background-color: transparent;
   border: none;
 }
+main .search-container .search-input-button:hover {
+  cursor: pointer;
+}
 main .search-container .search-input-button .fa-magnifying-glass {
   color: hsl(0, 0%, 52%);
 }
@@ -77,6 +81,9 @@ main .custom-select .select-button {
   border-radius: 5px;
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
 }
+main .custom-select .select-button:hover {
+  cursor: pointer;
+}
 main .custom-select .select-button .fa-chevron-down {
   font-size: 8px;
 }
@@ -92,12 +99,24 @@ main .custom-select .active {
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
   background-color: hsl(0, 0%, 100%);
 }
+main .custom-select .active:hover {
+  cursor: pointer;
+}
 main .custom-select .active li {
   height: 30px;
   align-content: center;
 }
+main .custom-select .active li:hover {
+  cursor: pointer;
+}
 main .custom-select .active li .dropdown-input {
   opacity: 0;
+}
+main .custom-select .active li .dropdown-input:hover {
+  cursor: pointer;
+}
+main .custom-select .active li label:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

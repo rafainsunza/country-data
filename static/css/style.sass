@@ -3,21 +3,23 @@ img
     width: 100px
 // REMOVE LATER
 
-$light: 300
-$heavy: 600
-$heaviest: 800
+$lightWeight: 300
+$heavyWeight: 600
+$heaviestWeight: 800
 
-$darkElement:hsl(209, 23%, 22%)
-$darkBackground: hsl(207, 26%, 17%)
-$lightText:hsl(200, 15%, 8%)
-$lightInput: hsl(0, 0%, 52%)
-$lightBackground:hsl(0, 0%, 98%)
-$lightElement-DarkText: hsl(0, 0%, 100%)
+$darkModeElement:hsl(209, 23%, 22%)
+$darkModeBackground: hsl(207, 26%, 17%)
+$lightModeText:hsl(200, 15%, 8%)
+$lightModeInput: hsl(0, 0%, 52%)
+$lightModeBackground:hsl(0, 0%, 98%)
+$lightModeElement-darkModeText: hsl(0, 0%, 100%)
+
 
 html
     font-family: 'Nunito Sans'
     font-size: 14px
-    font-weight: $light
+    font-weight: $lightWeight
+    color: $lightModeText    
 
 header
     display: flex
@@ -28,7 +30,7 @@ header
 
     h1
         font-size: 16px
-        font-weight: $heaviest
+        font-weight: $heaviestWeight
 
     .contrast-button-container
         display: flex 
@@ -40,20 +42,20 @@ header
             font-size: 16px
 
         button 
-            background-color: $lightElement-DarkText
+            background-color: $lightModeElement-darkModeText
             border: none
 
 main
     padding: 30px 20px 
 
-    .search-container
+    .search-container 
         position: relative
-
+        
         .search-input
             width: 100%
             height: 50px
             padding-left: 60px
-            color: $lightInput
+            color: $lightModeInput
             outline: none
             border: none
             border-radius: 5px
@@ -67,9 +69,11 @@ main
             height: 100%
             background-color: transparent
             border: none
+            &:hover
+                cursor: pointer
 
             .fa-magnifying-glass
-                color: $lightInput
+                color: $lightModeInput
     
 
     .custom-select
@@ -84,9 +88,11 @@ main
             padding: 0 20px
             outline: none
             border: none
-            background-color: $lightElement-DarkText
+            background-color: $lightModeElement-darkModeText
             border-radius: 5px
             box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+            &:hover
+                cursor: pointer
 
             .fa-chevron-down
                 font-size: 8px
@@ -101,14 +107,24 @@ main
             margin-top: 5px
             border-radius: 5px
             box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
-            background-color: $lightElement-DarkText
+            background-color: $lightModeElement-darkModeText
+            &:hover
+                cursor: pointer
 
             li
                 height: 30px
                 align-content: center
+                &:hover
+                    cursor: pointer
 
                 .dropdown-input
                     opacity: 0
+                    &:hover
+                        cursor: pointer
+                label
+                    &:hover
+                        cursor: pointer
+                  
 
         
         
