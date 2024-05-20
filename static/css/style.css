@@ -76,6 +76,10 @@ main .custom-select .select-button .fa-chevron-down {
   font-size: 8px;
 }
 main .custom-select .select-dropdown {
+  display: none;
+}
+main .custom-select .active {
+  display: inline-block;
   width: 60%;
   padding: 10px 0;
   margin-top: 5px;
@@ -83,11 +87,11 @@ main .custom-select .select-dropdown {
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
   background-color: hsl(0, 0%, 100%);
 }
-main .custom-select .select-dropdown li {
+main .custom-select .active li {
   height: 30px;
   align-content: center;
 }
-main .custom-select .select-dropdown li .dropdown-input {
+main .custom-select .active li .dropdown-input {
   opacity: 0;
 }
 
