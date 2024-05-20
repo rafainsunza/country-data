@@ -49,11 +49,16 @@ main .search-container .search-input {
   border-radius: 5px;
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
 }
-main .search-container .fa-magnifying-glass {
+main .search-container .search-input-button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  padding-left: 20px;
+  padding: 0 20px;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+main .search-container .search-input-button .fa-magnifying-glass {
   color: hsl(0, 0%, 52%);
 }
 main .custom-select {
