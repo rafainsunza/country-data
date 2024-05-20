@@ -26,7 +26,7 @@ header
     justify-content: space-between
     align-items: center
     padding: 30px 20px
-    box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+    box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%) 
 
     h1
         font-size: 16px
@@ -47,7 +47,7 @@ header
 
 main
     padding: 30px 20px 
-
+    background-color: $lightModeBackground
     .search-container 
         position: relative
         
@@ -59,7 +59,7 @@ main
             outline: none
             border: none
             border-radius: 5px
-            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+            box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%) 
 
         .search-input-button 
             position: absolute
@@ -78,6 +78,8 @@ main
 
     .custom-select
         margin: 40px 0 0 0 
+        :hover
+            cursor: pointer
         
         .select-button  
             display: flex
@@ -90,9 +92,7 @@ main
             border: none
             background-color: $lightModeElement-darkModeText
             border-radius: 5px
-            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
-            &:hover
-                cursor: pointer
+            box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%) 
 
             .fa-chevron-down
                 font-size: 8px
@@ -106,25 +106,18 @@ main
             padding: 10px 0
             margin-top: 5px
             border-radius: 5px
-            box-shadow: 0px 0px 3px 0.1px hsl(0°, 0% , 80%) 
+            box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%) 
             background-color: $lightModeElement-darkModeText
-            &:hover
+            :hover
                 cursor: pointer
 
             li
                 height: 30px
                 align-content: center
-                &:hover
-                    cursor: pointer
-
+        
                 .dropdown-input
                     opacity: 0
-                    &:hover
-                        cursor: pointer
-                label
-                    &:hover
-                        cursor: pointer
-                  
+      
 
         
         

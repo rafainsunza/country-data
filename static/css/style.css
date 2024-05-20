@@ -36,6 +36,7 @@ header .contrast-button-container button {
 
 main {
   padding: 30px 20px;
+  background-color: hsl(0, 0%, 98%);
 }
 main .search-container {
   position: relative;
@@ -68,6 +69,9 @@ main .search-container .search-input-button .fa-magnifying-glass {
 main .custom-select {
   margin: 40px 0 0 0;
 }
+main .custom-select :hover {
+  cursor: pointer;
+}
 main .custom-select .select-button {
   display: flex;
   align-items: center;
@@ -80,9 +84,6 @@ main .custom-select .select-button {
   background-color: hsl(0, 0%, 100%);
   border-radius: 5px;
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
-}
-main .custom-select .select-button:hover {
-  cursor: pointer;
 }
 main .custom-select .select-button .fa-chevron-down {
   font-size: 8px;
@@ -99,24 +100,15 @@ main .custom-select .active {
   box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
   background-color: hsl(0, 0%, 100%);
 }
-main .custom-select .active:hover {
+main .custom-select .active :hover {
   cursor: pointer;
 }
 main .custom-select .active li {
   height: 30px;
   align-content: center;
 }
-main .custom-select .active li:hover {
-  cursor: pointer;
-}
 main .custom-select .active li .dropdown-input {
   opacity: 0;
-}
-main .custom-select .active li .dropdown-input:hover {
-  cursor: pointer;
-}
-main .custom-select .active li label:hover {
-  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */
