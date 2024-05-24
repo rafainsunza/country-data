@@ -1,8 +1,3 @@
-// REMOVE LATER
-img 
-    width: 100px
-// REMOVE LATER
-
 $lightWeight: 300
 $heavyWeight: 600
 $heaviestWeight: 800
@@ -14,7 +9,6 @@ $lightModeInput: hsl(0, 0%, 52%)
 $lightModeBackground:hsl(0, 0%, 98%)
 $lightModeElement-darkModeText: hsl(0, 0%, 100%)
 
-
 html
     font-family: 'Nunito Sans'
     font-size: 14px
@@ -22,15 +16,20 @@ html
     color: $lightModeText    
 
 header
+    position: relative
     display: flex
     justify-content: space-between
     align-items: center
     padding: 30px 20px
     box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%) 
+    @media (min-width: 768px)
+        padding: 30px 60px
 
     h1
         font-size: 16px
         font-weight: $heaviestWeight
+        @media (min-width: 1120px)
+            font-size: 18px
 
     .contrast-button-container
         display: flex 
@@ -46,13 +45,23 @@ header
             border: none
 
 main
-    padding: 30px 20px 
-    background-color: $lightModeBackground
+    background-color: $lightModeBackground 
+    
+    form
+        padding: 30px 20px
+        @media (min-width: 768px)
+            padding: 30px 60px 
+        @media (min-width: 1120px)
+            display: grid
+            grid-template-columns: 60% 40% 
+            padding: 40px 60px 0 60px
+
     .search-container 
         position: relative
-        
+
         .search-input
             width: 100%
+            max-width: 500px
             height: 50px
             padding-left: 60px
             color: $lightModeInput
@@ -77,15 +86,21 @@ main
     
 
     .custom-select
+        position: relative
         margin: 40px 0 0 0 
         :hover
             cursor: pointer
-        
+        @media (min-width: 1120px)
+            margin: 0
+            display: flex
+            justify-content: flex-end
+
         .select-button  
             display: flex
             align-items: center
             justify-content: space-between
             width: 60%
+            max-width: 230px
             height: 50px
             padding: 0 20px
             outline: none
@@ -101,8 +116,10 @@ main
            display: none
 
         .active
+            position: absolute
             display: inline-block
             width: 60%
+            max-width: 230px
             padding: 10px 0
             margin-top: 5px
             border-radius: 5px
@@ -110,6 +127,8 @@ main
             background-color: $lightModeElement-darkModeText
             :hover
                 cursor: pointer
+            @media (min-width: 1120px)
+                top: 50px
 
             li
                 height: 30px
@@ -117,10 +136,51 @@ main
         
                 .dropdown-input
                     opacity: 0
-      
 
+    .country-card-container
+        display: flex
+        flex-direction: column
+        flex-wrap: wrap
+        padding: 30px 20px 0 20px
+        @media (min-width: 768px)
+            padding: 30px 60px 0 60px
+            display: grid
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) 
+            column-gap: 80px
+        @media (min-width: 1120px)
+            padding: 50px 60px 0 60px
+
+        .country-card
+            background-color: $lightModeElement-darkModeText
+            box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%)
+            border-radius: 5px
+            width: 280px
+            height: 375px
+            padding: 0 0 40px 0
+            margin: 0px auto 80px auto
+            @media (min-width: 1490px)
+                width: 100%
         
-        
+            img
+                width: 100%
+                height: 185px
+                object-fit: cover
+                border-radius: 5px 5px 0 0
+            
+            h2
+                font-size: 18px
+                font-weight: $heaviestWeight
+                padding: 25px 20px
+            
+            .card-ul
+                padding: 0 20px
+
+                .card-li
+                    padding: 5px 0
+
+                .span-category 
+                    font-weight: $heavyWeight
+                    font-size: 16px
 
 
            
