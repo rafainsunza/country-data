@@ -88,6 +88,12 @@ const displayCountryCards = (countries) => {
                 })
 
             })
+            .catch((error) => {
+                const div = document.createElement('div');
+                div.classList.add('error-message');
+                div.textContent = 'There was a problem getting country data, please try again later...';
+                countryCardContainer.appendChild(div);
+            })
     } else if (Array.isArray(countries)) {
         countryCardContainer.innerHTML = '';
         countries.forEach((country) => {
@@ -147,7 +153,7 @@ const searchCountry = (event) => {
     fetchCountries()
         .then((data) => {
             data.forEach((country) => {
-                if (country.name.toLowerCase().includes(searchInput.value)) {
+                if (country.name.toLowerCase().includes(searchInput.value.toLowerCase())) {
                     foundCountries.push(country);
                 }
             })
@@ -158,21 +164,18 @@ const searchCountry = (event) => {
 
                 displayCountryCards(foundCountries);
             } else {
-                searchInput.placeholder = 'No countries found';
-                searchInput.value = '';
-                searchInput.focus();
-
                 displayCountryCards(foundCountries);
-            }
 
+                const div = document.createElement('div');
+                div.textContent = `"${searchInput.value}" returned no results`;
+                div.classList.add('error-message');
+                countryCardContainer.appendChild(div);
+
+                searchInput.value = '';
+            }
         })
 }
 
-const restorePlaceholder = () => {
-    if (searchInput.value === '') {
-        searchInput.placeholder = 'Search for a country...'
-    }
-}
 addRegionsToSelectDropdown();
 displayCountryCards(fetchCountries());
 
@@ -182,6 +185,5 @@ selectBtn.addEventListener('click', (event) => {
 });
 
 searchInputBtn.addEventListener('click', searchCountry);
-searchInput.addEventListener('blur', restorePlaceholder);
 selectDropDown.addEventListener('click', filterByRegion);
 
