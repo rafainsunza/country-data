@@ -13,7 +13,10 @@ html
     font-family: 'Nunito Sans'
     font-size: 14px
     font-weight: $lightWeight
-    color: $lightModeText    
+    color: $lightModeText  
+
+body
+    background-color: $lightModeBackground   
 
 header
     position: relative
@@ -25,7 +28,9 @@ header
     @media (min-width: 768px)
         padding: 30px 60px
 
-    h1
+    a
+        text-decoration: none
+        color: $lightModeText
         font-size: 16px
         font-weight: $heaviestWeight
         @media (min-width: 1120px)
@@ -45,8 +50,7 @@ header
             border: none
 
 main
-    background-color: $lightModeBackground 
-    
+
     form
         padding: 30px 20px
         @media (min-width: 768px)
@@ -149,6 +153,9 @@ main
             column-gap: 80px
         @media (min-width: 1120px)
             padding: 50px 60px 0 60px
+
+        .error-message
+            font-size: 25px   
 
         .country-card
             background-color: $lightModeElement-darkModeText
