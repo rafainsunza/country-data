@@ -13,8 +13,6 @@ let searchActive = false;
 
 let activeFilter;
 
-
-
 const fetchData = (dataKeys) => {
     return fetch('./static/data/data.json')
         .then((response) => response.json())
@@ -30,7 +28,7 @@ const fetchData = (dataKeys) => {
             });
 
             return requestedData;
-        })
+        });
 }
 
 const displayInitialCountries = () => {
@@ -63,7 +61,6 @@ const displayMoreCountries = () => {
 
     if (document.documentElement.clientHeight + window.scrollY >= document.documentElement.scrollHeight) {
         pageCount++;
-
         if (!filterActive && !searchActive) {
             fetchData(cardInfo)
                 .then((data) => {
@@ -106,31 +103,35 @@ const createLi = (ul, country, category) => {
 
 }
 const displayCards = (countries) => {
-    // countryCardContainer.innerHTML = '';
+    const cards = [];
     countries.forEach((country) => {
-        const div = document.createElement('div');
-        div.classList.add('country-card');
-        countryCardContainer.appendChild(div);
+        const card = document.createElement('div');
+        card.classList.add('country-card');
+        card.innerHTML = ` 
+        <img class="country-flag" src="${country.flag}">
+        <h2 class="country-name">${country.name}</h2>
+        <ul class="card-ul">
+            <li class="card-li">
+                <span class="span-category">Population:</span>
+                <span class="span-value">${country.population}</span>
+            </li>
+            <li class="card-li">
+                <span class="span-category">Region:</span>
+                <span class="span-value">${country.region}</span>
+            </li>
+            <li class="card-li">
+                <span class="span-category">Capital:</span>
+                <span class="span-value">${country.capital}</span>
+            </li>
+        </ul>
+        `;
 
-        const img = document.createElement('img');
-        img.classList.add('country-flag');
-        img.setAttribute('src', country.flag);
-        div.appendChild(img);
+        cards.push(card);
+    });
 
-        const h2 = document.createElement('h2');
-        h2.classList.add('country-name');
-        h2.textContent = country.name;
-        div.appendChild(h2);
-
-        const ul = document.createElement('ul');
-        ul.classList.add('card-ul');
-        div.appendChild(ul);
-
-        createLi(ul, country.population.toLocaleString('en-US'), 'Population');
-        createLi(ul, country.region, 'Region');
-        createLi(ul, country.capital, 'Capital');
-
-    })
+    cards.forEach((card) => {
+        countryCardContainer.appendChild(card);
+    });
 }
 
 const addRegionsToSelectDropdown = () => {
