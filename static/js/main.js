@@ -50,8 +50,6 @@ const displayInitialCountries = () => {
     } else if (searchActive && !filterActive) {
         console.log('searching...'); // test
     }
-
-
 }
 
 const displayMoreCountries = () => {
@@ -86,22 +84,6 @@ const displayMoreCountries = () => {
     }
 }
 
-const createLi = (ul, country, category) => {
-    const li = document.createElement('li');
-    li.classList.add('card-li');
-    ul.appendChild(li);
-
-    const spanBefore = document.createElement('span');
-    spanBefore.classList.add('span-category');
-    spanBefore.textContent = `${category}: `;
-    li.appendChild(spanBefore);
-
-    const spanAfter = document.createElement('span');
-    spanAfter.classList.add('span-value');
-    spanAfter.textContent = country;
-    li.appendChild(spanAfter);
-
-}
 const displayCards = (countries) => {
     const cards = [];
     countries.forEach((country) => {
@@ -191,10 +173,7 @@ selectBtn.addEventListener('click', (event) => {
     event.preventDefault();
     selectDropDown.classList.toggle('active');
 });
-selectDropDown.addEventListener('click', setFilter);
-
-
-
+selectDropDown.addEventListener('click', setFilter)
 // const searchCountry = (event) => {
 //     event.preventDefault();
 
