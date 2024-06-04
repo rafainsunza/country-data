@@ -86,6 +86,7 @@ const displayMoreCountries = () => {
 
 const displayCards = (countries) => {
     const cards = [];
+
     countries.forEach((country) => {
         const card = document.createElement('div');
         card.classList.add('country-card');
@@ -148,7 +149,6 @@ const addRegionsToSelectDropdown = () => {
 const setFilter = (event) => {
     event.preventDefault();
     filterActive = true;
-    selectDropDown.classList.toggle('active');
 
     let input = event.target;
     if (input.tagName === 'LI') {
@@ -162,6 +162,10 @@ const setFilter = (event) => {
     }
 
     activeFilter = input.id;
+
+    selectBtn.firstElementChild.innerText = input.labels[0].innerText;
+    selectDropDown.classList.toggle('active');
+
     displayInitialCountries();
 }
 
