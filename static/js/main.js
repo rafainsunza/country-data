@@ -177,6 +177,13 @@ const displayCards = (countries) => {
     const cards = [];
 
     countries.forEach((country) => {
+
+        let countryCapital = country.capital;
+
+        if (countryCapital === undefined) {
+            countryCapital = 'None';
+        }
+
         const card = document.createElement('div');
         card.classList.add('country-card');
         card.innerHTML = ` 
@@ -185,7 +192,7 @@ const displayCards = (countries) => {
         <ul class="card-ul">
             <li class="card-li">
                 <span class="span-category">Population:</span>
-                <span class="span-value">${country.population}</span>
+                <span class="span-value">${country.population.toLocaleString('en-US')}</span>
             </li>
             <li class="card-li">
                 <span class="span-category">Region:</span>
@@ -193,7 +200,7 @@ const displayCards = (countries) => {
             </li>
             <li class="card-li">
                 <span class="span-category">Capital:</span>
-                <span class="span-value">${country.capital}</span>
+                <span class="span-value">${countryCapital}</span>
             </li>
         </ul>
         `;
@@ -275,6 +282,7 @@ const setSearch = (event) => {
     displayInitialCountries();
 
     searchInput.value = '';
+    selectBtn.firstElementChild.innerText = 'Filter by Region';
 }
 
 displayInitialCountries();
