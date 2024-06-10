@@ -171,6 +171,15 @@ main .country-card-container {
   }
 }
 main .country-card-container .error-message {
+  font-size: 20px;
+  padding-top: 190px;
+  margin-bottom: 190px;
+  height: 500px;
+  text-align: center;
+  grid-column: 1/-1;
+}
+main .country-card-container .error-message .fa-circle-exclamation {
+  color: red;
   font-size: 25px;
 }
 main .country-card-container .country-card {
@@ -207,6 +216,25 @@ main .country-card-container .country-card .card-ul .card-li {
 main .country-card-container .country-card .card-ul .span-category {
   font-weight: 600;
   font-size: 16px;
+}
+main .country-card-container .loader {
+  padding-top: 190px;
+  margin-bottom: 190px;
+  height: 500px;
+  text-align: center;
+  grid-column: 1/-1;
+}
+main .country-card-container .loader .fa-spinner {
+  animation: spin 2s linear infinite;
+  padding: 10px 0;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
