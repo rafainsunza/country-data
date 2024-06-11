@@ -62,35 +62,18 @@ const displayLoader = (loadingCard) => {
 }
 
 const displayInitialCountries = () => {
-    let initialCountryData = [];
     countryCardContainer.innerHTML = '';
 
-    if (!filterActive && !searchActive) {
-        displayLoader(true);
+    displayLoader(true);
 
-        fetchData(cardInfo)
-            .then((data) => {
-                initialCountryData = data.slice(0, cardsPerPage);
+    fetchData(cardInfo)
+        .then((data) => {
+            let initialCountryData = data;
 
-                displayCards(initialCountryData);
-                displayLoader(false);
-            });
-    } else if (filterActive && !searchActive) {
-        displayLoader(true);
-
-        fetchData(cardInfo)
-            .then((data) => {
-                initialCountryData = data.filter((country) => country.region.toLowerCase() === activeFilter).slice(0, cardsPerPage);
-
-                displayCards(initialCountryData);
-                displayLoader(false);
-            });
-    } else if (searchActive && !filterActive) {
-        displayLoader(true);
-
-        fetchData(cardInfo)
-            .then((data) => {
-                initialCountryData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase())).slice(0, cardsPerPage);
+            if (filterActive && !searchActive) {
+                initialCountryData = data.filter((country) => country.region.toLowerCase() === activeFilter);
+            } else if (searchActive && !filterActive) {
+                initialCountryData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase()));
 
                 if (initialCountryData.length < 1 || activeSearch.trim() === '') {
                     const errorContainer = document.createElement('div');
@@ -99,16 +82,17 @@ const displayInitialCountries = () => {
                     <i class="fa-solid fa-circle-exclamation"></i>
                     <p>"${activeSearch}" returned no results...</p>
                     `;
-
                     countryCardContainer.appendChild(errorContainer);
                     displayLoader(false);
+                    return;
                 }
+            }
 
-                displayCards(initialCountryData);
-                displayLoader(false);
+            initialCountryData = initialCountryData.slice(0, cardsPerPage);
 
-            });
-    }
+            displayCards(initialCountryData);
+            displayLoader(false);
+        });
 }
 
 const displayMoreCountries = () => {
@@ -118,58 +102,31 @@ const displayMoreCountries = () => {
 
     if (!loadingData && Math.abs(document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight) <= 25) {
         pageCount++;
+        displayLoader(true);
 
-        if (!filterActive && !searchActive) {
-            displayLoader(true);
+        fetchData(cardInfo)
+            .then((data) => {
+                let filteredData = data;
 
-            fetchData(cardInfo)
-                .then((data) => {
-                    maxPages = Math.ceil(data.length / cardsPerPage);
+                if (filterActive && !searchActive) {
+                    filteredData = data.filter((country) => country.region.toLowerCase() === activeFilter);
+                } else if (searchActive && !filterActive) {
+                    filteredData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase()));
+                }
 
-                    if (pageCount <= maxPages) {
-                        const moreCountryData = data.slice(startIndex, endIndex);
+                maxPages = Math.ceil(filteredData.length / cardsPerPage);
 
-                        displayCards(moreCountryData);
-                        displayLoader(false);
-                    }
+                if (pageCount <= maxPages) {
+                    const moreCountryData = filteredData.slice(startIndex, endIndex);
+                    displayCards(moreCountryData);
+                }
 
-                    if (pageCount === maxPages) { loadingCardActive = true }
+                displayLoader(false);
 
-                });
-        } else if (filterActive && !searchActive) {
-            displayLoader(true);
-
-            fetchData(cardInfo)
-                .then((data) => {
-                    maxPages = Math.ceil(data.filter((country) => country.region.toLowerCase() === activeFilter).length / cardsPerPage);
-
-                    if (pageCount <= maxPages) {
-                        const moreFilteredCountryData = data.filter((country) => country.region.toLowerCase() === activeFilter).slice(startIndex, endIndex);
-
-                        displayCards(moreFilteredCountryData);
-                        displayLoader(false);
-                    }
-
-                    if (pageCount === maxPages) { loadingCardActive = true }
-
-                });
-        } else if (searchActive && !filterActive) {
-            displayLoader(true);
-
-            fetchData(cardInfo)
-                .then((data) => {
-                    maxPages = Math.ceil(data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase())).length / cardsPerPage);
-                    if (pageCount <= maxPages) {
-                        const moreSearchedCountryData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase())).slice(startIndex, endIndex);
-
-                        displayCards(moreSearchedCountryData);
-                        displayLoader(false);
-
-                    }
-
-                    if (pageCount === maxPages) { loadingCardActive = true }
-                });
-        }
+                if (pageCount === maxPages) {
+                    loadingCardActive = true;
+                }
+            });
     }
 }
 
