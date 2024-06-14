@@ -178,6 +178,7 @@ const addRegionsToSelectDropdown = () => {
                 const input = document.createElement('input');
                 const label = document.createElement('label');
 
+                li.classList.add('dropdown-option');
                 input.setAttribute('type', 'radio');
                 input.setAttribute('id', region.toLowerCase());
                 input.setAttribute('class', 'dropdown-input');
