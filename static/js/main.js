@@ -3,6 +3,7 @@ const selectDropDown = document.querySelector('.select-dropdown');
 const selectBtn = document.querySelector('.select-button');
 const searchInput = document.querySelector('.search-input');
 const searchInputBtn = document.querySelector('.search-input-button');
+const darkModeBtn = document.querySelector('.contrast-button');
 
 const cardInfo = ['flag', 'name', 'population', 'region', 'capital'];
 const cardsPerPage = 12;
@@ -128,11 +129,7 @@ const displayCards = (countries) => {
 
     countries.forEach((country) => {
 
-        let countryCapital = country.capital;
-
-        if (countryCapital === undefined) {
-            countryCapital = 'None';
-        }
+        let countryCapital = country.capital === undefined ? 'None' : country.capital;
 
         const card = document.createElement('div');
         card.classList.add('country-card');
@@ -164,9 +161,10 @@ const displayCards = (countries) => {
 }
 
 const addRegionsToSelectDropdown = () => {
-    const regions = [];
     fetchData(['region'])
         .then((data => {
+            const regions = [];
+
             data.forEach((country) => {
                 if (!regions.includes(country.region)) {
                     regions.push(country.region);
@@ -175,19 +173,13 @@ const addRegionsToSelectDropdown = () => {
 
             regions.forEach((region) => {
                 const li = document.createElement('li');
-                const input = document.createElement('input');
-                const label = document.createElement('label');
-
                 li.classList.add('dropdown-option');
-                input.setAttribute('type', 'radio');
-                input.setAttribute('id', region.toLowerCase());
-                input.setAttribute('class', 'dropdown-input');
-                input.setAttribute('name', 'region');
-                label.textContent = region;
-                label.setAttribute('for', region.toLowerCase());
 
-                li.appendChild(input);
-                li.appendChild(label);
+                li.innerHTML = `
+                <input id="${region.toLowerCase()}" class="dropdown-input" type="radio" name="region">
+                <label for="${region.toLowerCase()}">${region}</label>
+                `;
+
                 selectDropDown.appendChild(li);
             });
         }));
@@ -201,12 +193,7 @@ const setFilter = (event) => {
     filterActive = true;
     searchActive = false;
 
-    let input = event.target;
-    if (input.tagName === 'LI') {
-        input = input.querySelector('input');
-    } else if (input.tagName === 'LABEL') {
-        input = input.previousElementSibling;
-    }
+    let input = event.target.closest('li').querySelector('input');
 
     if (input.id === 'all') {
         filterActive = false;
@@ -236,6 +223,10 @@ const setSearch = (event) => {
     selectBtn.firstElementChild.innerText = 'Filter by Region';
 }
 
+const toggleDarkMode = () => {
+    document.querySelector('body').classList.toggle('dark-mode');
+}
+
 displayInitialCountries();
 addRegionsToSelectDropdown();
 
@@ -245,6 +236,7 @@ selectBtn.addEventListener('click', (event) => {
 });
 selectDropDown.addEventListener('click', setFilter);
 searchInputBtn.addEventListener('click', setSearch);
+darkModeBtn.addEventListener('click', toggleDarkMode)
 window.addEventListener('scroll', displayMoreCountries);
 
 
