@@ -1,10 +1,27 @@
+:root {
+  --background-color: hsl(0, 0%, 98%);
+  --element-background-color: hsl(0, 0%, 100%);
+  --text-color: hsl(200, 15%, 8%);
+  --input-color: hsl(0, 0%, 52%);
+  --box-shadow: 0px 0px 3px 0.1px hsl(0, 0% , 80%);
+}
+
+.dark-mode {
+  --background-color: hsl(207, 26%, 17%);
+  --element-background-color: hsl(209, 23%, 22%);
+  --text-color: hsl(0, 0%, 100%);
+  --input-color: var(--text-color);
+  --box-shadow: none;
+}
+
 header {
   position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 20px;
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  box-shadow: var(--box-shadow);
+  background-color: var(--element-background-color);
 }
 
 @media (min-width: 768px) {
@@ -14,7 +31,7 @@ header {
 }
 header a {
   text-decoration: none;
-  color: hsl(200, 15%, 8%);
+  color: var(--text-color);
   font-size: 16px;
   font-weight: 800;
 }
@@ -36,8 +53,12 @@ header a {
 }
 
 .contrast-button {
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--element-background-color);
+  color: var(--text-color);
   border: none;
+}
+.contrast-button:hover {
+  cursor: pointer;
 }
 
 form {
@@ -65,11 +86,15 @@ form {
   max-width: 500px;
   height: 50px;
   padding-left: 60px;
-  color: hsl(0, 0%, 52%);
+  background-color: var(--element-background-color);
+  color: var(--input-color);
   outline: none;
   border: none;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  box-shadow: var(--box-shadow);
+}
+.search-input::placeholder {
+  color: var(--input-color);
 }
 
 .search-input-button {
@@ -80,10 +105,13 @@ form {
   height: 100%;
   background-color: transparent;
   border: none;
+}
+.search-input-button:hover {
   cursor: pointer;
 }
+
 .fa-magnifying-glass {
-  color: hsl(0, 0%, 52%);
+  color: var(--input-color);
 }
 
 .custom-select {
@@ -111,9 +139,10 @@ form {
   padding: 0 20px;
   outline: none;
   border: none;
-  background-color: hsl(0, 0%, 100%);
+  background-color: var(--element-background-color);
+  color: var(--text-color);
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  box-shadow: var(--box-shadow);
 }
 
 .fa-chevron-down {
@@ -132,8 +161,8 @@ form {
   padding: 10px 0;
   margin-top: 5px;
   border-radius: 5px;
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
-  background-color: hsl(0, 0%, 100%);
+  box-shadow: var(--box-shadow);
+  background-color: var(--element-background-color);
 }
 .active :hover {
   cursor: pointer;
@@ -154,8 +183,8 @@ form {
 }
 
 .country-card {
-  background-color: hsl(0, 0%, 100%);
-  box-shadow: 0px 0px 3px 0.1px hsl(0, 0%, 80%);
+  background-color: var(--element-background-color);
+  box-shadow: var(--box-shadow);
   border-radius: 5px;
   width: 280px;
   height: 375px;
@@ -194,19 +223,12 @@ form {
   font-size: 16px;
 }
 
-.dark-mode {
-  background-color: hsl(207, 26%, 17%);
-}
-
-html {
+body {
+  background-color: var(--background-color);
   font-family: "Nunito Sans";
   font-size: 14px;
   font-weight: 300;
-  color: hsl(200, 15%, 8%);
-}
-
-body {
-  background-color: hsl(0, 0%, 98%);
+  color: var(--text-color);
 }
 
 .country-card-container {

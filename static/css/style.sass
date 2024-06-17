@@ -3,19 +3,12 @@
 @import 'form'
 @import 'country_card'
 
-
-.dark-mode 
-    background-color: $darkModeBackground
-// something like this
-
-html
+body
+    background-color: var(--background-color)
     font-family: 'Nunito Sans'
     font-size: 14px
     font-weight: $lightWeight
-    color: $lightModeText  
-
-body
-    background-color: $lightModeBackground   
+    color: var(--text-color)
 
 .country-card-container
     display: flex
