@@ -1,8 +1,16 @@
 const countryCardContainer = document.querySelector('.country-card-container');
 const darkModeBtn = document.querySelector('.contrast-button');
+const body = document.querySelector('body');
 
 let maxPagesReached = false;
 let loadingData = false;
+
+localStorage.getItem('dark-mode') === null ?
+    localStorage.setItem('dark-mode', 'disabled') :
+    localStorage.getItem('dark-mode') === 'enabled' ?
+        body.classList.add('dark-mode') :
+        body.classList.remove('dark-mode');
+
 
 const fetchData = (dataKeys) => {
     return fetch('./static/data/data.json')
@@ -61,7 +69,15 @@ const displayLoader = (display) => {
 }
 
 const toggleDarkMode = () => {
-    document.querySelector('body').classList.toggle('dark-mode')
+    if (localStorage.getItem('dark-mode') === 'disabled') {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('dark-mode', 'enabled')
+    } else {
+        body.classList.toggle('dark-mode');
+        localStorage.setItem('dark-mode', 'disabled');
+    }
+
+
 }
 
 darkModeBtn.addEventListener('click', toggleDarkMode);
