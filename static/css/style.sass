@@ -22,6 +22,7 @@ body
         column-gap: 80px
     @media (min-width: 1120px)
         padding: 50px 60px 0 60px    
+
             
 .error-message
     font-size: 20px
@@ -36,10 +37,16 @@ body
     font-size: 25px
 
 .loader
-    padding-top: 190px
-    margin-bottom: 190px
-    height: 500px
+    background-color: var(--element-background-color)
+    box-shadow: var(--box-shadow)
+    margin: auto
+    width: 200px
+    height: 200px
+    border-radius: 50%
+    position: sticky
+    bottom: 50px
     text-align: center
+    align-content: center
     grid-column: 1 / -1
 
 .fa-spinner

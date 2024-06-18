@@ -47,7 +47,7 @@ const displayLoader = (display) => {
         loader.classList.add('loader');
         loader.innerHTML = `
         <i class="fa-solid fa-spinner"></i>
-        <p>Loading countries...</p>
+        <p>Loading more countries...</p>
         `;
 
         countryCardContainer.appendChild(loader);
