@@ -51,7 +51,6 @@ const displayLoader = (display) => {
         `;
 
         countryCardContainer.appendChild(loader);
-        loader.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" })
     } else {
         const loader = document.querySelector('.loader');
 
