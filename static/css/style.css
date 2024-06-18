@@ -95,6 +95,7 @@ form {
 }
 .search-input::placeholder {
   color: var(--input-color);
+  opacity: 1;
 }
 
 .search-input-button {
