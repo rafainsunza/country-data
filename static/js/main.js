@@ -224,7 +224,7 @@ const setSearch = (event) => {
 }
 
 const toggleDarkMode = () => {
-    document.querySelector('body').classList.toggle('dark-mode');
+    document.querySelector('body').classList.toggle('dark-mode')
 }
 
 displayInitialCountries();
