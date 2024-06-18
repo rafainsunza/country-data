@@ -17,7 +17,7 @@ let activeFilter;
 let activeSearch;
 
 
-const fetchData = (dataKeysA) => {
+const fetchData = (dataKeys) => {
     return fetch('./static/data/data.json')
         .then((response) => response.json())
         .then((data) => {
