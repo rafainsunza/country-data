@@ -17,7 +17,7 @@ let activeFilter;
 let activeSearch;
 
 
-const fetchData = (dataKeys) => {
+const fetchData = (dataKeysA) => {
     return fetch('./static/data/data.json')
         .then((response) => response.json())
         .then((data) => {
@@ -32,7 +32,24 @@ const fetchData = (dataKeys) => {
             });
 
             return requestedData;
-        });
+        })
+        .catch(() => {
+            displayLoader(false);
+            maxPagesReached = true;
+            let errorMessageContainer = countryCardContainer.querySelector('.error-message');
+
+            if (!errorMessageContainer) {
+                errorMessageContainer = document.createElement('div');
+                errorMessageContainer.classList.add('error-message');
+
+                errorMessageContainer.innerHTML = `
+                    <p>Something went wrong, please try again later...</p>
+                `;
+
+                countryCardContainer.appendChild(errorMessageContainer);
+            }
+
+        })
 }
 
 const displayLoader = (display) => {
@@ -120,7 +137,6 @@ const displayMoreCountries = () => {
 
                 displayLoader(false);
             });
-
     }
 }
 
