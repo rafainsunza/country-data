@@ -23,8 +23,10 @@ const displayInitialCountries = () => {
 
             if (filterActive && !searchActive) {
                 initialCountryData = data.filter((country) => country.region.toLowerCase() === activeFilter);
+                initialCountryData.length <= cardsPerPage ? maxPagesReached = true : null;
             } else if (searchActive && !filterActive) {
                 initialCountryData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase()));
+                initialCountryData.length <= cardsPerPage ? maxPagesReached = true : null;
 
                 if (initialCountryData.length < 1 || activeSearch.trim() === '') {
                     const errorContainer = document.createElement('div');
@@ -85,8 +87,10 @@ const displayCards = (countries) => {
 
         let countryCapital = country.capital === undefined ? 'None' : country.capital;
 
-        const card = document.createElement('div');
+        const card = document.createElement('a');
         card.classList.add('country-card');
+        card.setAttribute('href', '/pages/country.html')
+        card.setAttribute('id', country.name)
         card.innerHTML = ` 
         <img class="country-flag" src="${country.flag}">
         <h2 class="country-name">${country.name}</h2>
