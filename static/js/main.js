@@ -56,15 +56,14 @@ const displayLoader = (display) => {
         loader.classList.add('loader');
         loader.innerHTML = `
         <i class="fa-solid fa-spinner"></i>
-        <p>Loading more countries...</p>
         `;
 
-        countryCardContainer.appendChild(loader);
+        body.appendChild(loader);
     } else {
         const loader = document.querySelector('.loader');
 
-        if (loader && loader.parentNode === countryCardContainer) {
-            countryCardContainer.removeChild(loader);
+        if (loader && loader.parentNode === body) {
+            body.removeChild(loader);
         }
     }
 }
