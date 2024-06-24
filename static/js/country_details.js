@@ -49,7 +49,6 @@ const convertAbbrToCountryName = (abbr, data) => {
     return convertedCountryNames;
 }
 
-
 const displayCard = (flag, name, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages, borders) => {
     const card =
         `<img class="detailed-flag" src="${flag}">
@@ -81,6 +80,8 @@ const displayCard = (flag, name, nativeName, population, region, subregion, capi
 
 const displaySelectedCountry = () => {
     const selectedCountry = localStorage.getItem('selected-country');
+
+    displayLoader(true)
 
     fetchDetailedData(detailedInfo)
         .then((data) => {
@@ -124,8 +125,9 @@ const displaySelectedCountry = () => {
                 span.textContent = country;
 
                 borderCountriesDiv.appendChild(span);
-            })
+            });
 
+            displayLoader(false)
         });
 }
 
