@@ -132,7 +132,7 @@ const displaySelectedCountry = () => {
 }
 
 const handleBackBtnClick = () => {
-    console.log('clicked back btn')
+    history.back()
 }
 
 displaySelectedCountry();
