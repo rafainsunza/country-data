@@ -80,23 +80,7 @@ const toggleDarkMode = () => {
 
 }
 
-const openSelectedCountryPage = (event) => {
-    event.preventDefault();
-
-    event.target.closest('a') ?
-        selectedCountry = event.target.closest('a').id :
-        null
-
-    localStorage.setItem('selected-country', `${selectedCountry}`)
-
-    selectedCountry !== undefined ?
-        window.location.href = '/pages/country.html' :
-        null
-
-}
-
 darkModeBtn.addEventListener('click', toggleDarkMode);
-countryCardContainer.addEventListener('click', openSelectedCountryPage);
 
 
 

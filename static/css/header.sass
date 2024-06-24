@@ -1,4 +1,4 @@
-header 
+header
   position: relative
   display: flex
   justify-content: space-between
@@ -7,33 +7,32 @@ header
   box-shadow: var(--box-shadow)
   background-color: var(--element-background-color)
 
-@media (min-width: 768px) 
-  header 
+@media (min-width: 768px)
+  header
     padding: 30px 60px
-  
-header a 
+
+.home-btn
   text-decoration: none
   color: var(--text-color)
   font-size: 16px
-  font-weight: 800
+  font-weight: var(--boldest)
 
-@media (min-width: 1120px) 
-  header a 
+@media (min-width: 1120px)
+  .home-btn
     font-size: 18px
-  
-.contrast-button-container 
+
+.contrast-button-container
   display: flex
   align-items: center
 
-.fa-moon 
+.fa-moon
   padding: 0 10px
   transform: rotate(-25deg)
   font-size: 16px
 
-.contrast-button 
+.contrast-button
   background-color: var(--element-background-color)
   color: var(--text-color)
   border: none
   &:hover
     cursor: pointer
-
