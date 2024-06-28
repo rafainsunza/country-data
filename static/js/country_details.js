@@ -36,12 +36,12 @@ const fetchDetailedData = (dataKeys) => {
         });
 }
 
-const convertAbbrToCountryName = (abbr, data) => {
+const convertAbbreviationsToCountryNames = (abbreviation, data) => {
     const convertedCountryNames = [];
 
-    abbr[0] === 'None' ? convertedCountryNames.push(abbr[0]) :
-        abbr.forEach((abbr) => {
-            const foundCountry = data.find(country => country["alpha3Code"] === abbr);
+    abbreviation[0] === 'None' ? convertedCountryNames.push(abbreviation[0]) :
+        abbreviation.forEach((abbreviation) => {
+            const foundCountry = data.find(country => country["alpha3Code"] === abbreviation);
 
             convertedCountryNames.push(foundCountry.name);
         });
@@ -97,13 +97,13 @@ const displaySelectedCountry = () => {
     fetchDetailedData(detailedInfo)
         .then((data) => {
             const countryToDisplay = data.find((country) => country.name === selectedCountry);
-            let borderCountriesAbbr = [];
+            let borderCountriesAbbreviations = [];
 
             countryToDisplay.borders === undefined ?
-                borderCountriesAbbr = ['None'] :
-                countryToDisplay.borders.forEach((country) => { borderCountriesAbbr.push(country) });
+                borderCountriesAbbreviations = ['None'] :
+                countryToDisplay.borders.forEach((country) => { borderCountriesAbbreviations.push(country) });
 
-            const borderCountries = convertAbbrToCountryName(borderCountriesAbbr, data);
+            const borderCountries = convertAbbreviationsToCountryNames(borderCountriesAbbreviations, data);
 
             detailedCountryCard.innerHTML = displayCard(countryToDisplay);
 
