@@ -49,22 +49,33 @@ const convertAbbrToCountryName = (abbr, data) => {
     return convertedCountryNames;
 }
 
-const displayCard = (flag, name, nativeName, population, region, subregion, capital, topLevelDomain, currencies, languages, borders) => {
+const displayCard = (countryToDisplay) => {
+    const currencies = [];
+    const languages = [];
+
+    countryToDisplay.capital === undefined ? countryToDisplay.capital = 'None' : null;
+
+    countryToDisplay.languages.forEach((language) => { languages.push(language.name) });
+
+    countryToDisplay.currencies === undefined ?
+        currencies.push('None') :
+        countryToDisplay.currencies.forEach((currency) => { currencies.push(currency.name) });
+
     const card =
-        `<img class="detailed-flag" src="${flag}">
+        `<img class="detailed-flag" src="${countryToDisplay.flag}">
     <div class="details-container">
-        <h2 class="detail-page-name">${name}</h2>
+        <h2 class="detail-page-name">${countryToDisplay.name}</h2>
 
         <ul class="details">
-            <li class="details-li"><strong>Native Name: </strong>${nativeName}</li>
-            <li class="details-li"><strong>Population: </strong>${population.toLocaleString('en-US')}</li>
-            <li class="details-li"><strong>Region: </strong>${region}</li>
-            <li class="details-li"><strong>Sub Region: </strong>${subregion}</li>
-            <li class="details-li"><strong>Capital: </strong>${capital}</li>
+            <li class="details-li"><strong>Native Name: </strong>${countryToDisplay.nativeName}</li>
+            <li class="details-li"><strong>Population: </strong>${countryToDisplay.population.toLocaleString('en-US')}</li>
+            <li class="details-li"><strong>Region: </strong>${countryToDisplay.region}</li>
+            <li class="details-li"><strong>Sub Region: </strong>${countryToDisplay.subregion}</li>
+            <li class="details-li"><strong>Capital: </strong>${countryToDisplay.capital}</li>
         </ul>
 
         <ul class="details">
-            <li class="details-li"><strong>Top Level Domain: </strong>${topLevelDomain}</li>
+            <li class="details-li"><strong>Top Level Domain: </strong>${countryToDisplay.topLevelDomain}</li>
             <li class="details-li"><strong>Currencies: </strong>${currencies.join(', ')}</li>
             <li class="details-li"><strong>Languages: </strong>${languages.join(', ')}</li>
         </ul>
@@ -86,17 +97,7 @@ const displaySelectedCountry = () => {
     fetchDetailedData(detailedInfo)
         .then((data) => {
             const countryToDisplay = data.find((country) => country.name === selectedCountry);
-            const currencies = [];
-            const languages = [];
             let borderCountriesAbbr = [];
-
-            countryToDisplay.capital === undefined ? countryToDisplay.capital = 'None' : null;
-
-            countryToDisplay.currencies === undefined ?
-                currencies.push('None') :
-                countryToDisplay.currencies.forEach((currency) => { currencies.push(currency.name) });
-
-            countryToDisplay.languages.forEach((language) => { languages.push(language.name) });
 
             countryToDisplay.borders === undefined ?
                 borderCountriesAbbr = ['None'] :
@@ -104,18 +105,7 @@ const displaySelectedCountry = () => {
 
             const borderCountries = convertAbbrToCountryName(borderCountriesAbbr, data);
 
-            detailedCountryCard.innerHTML = displayCard(
-                countryToDisplay.flag,
-                countryToDisplay.name,
-                countryToDisplay.nativeName,
-                countryToDisplay.population,
-                countryToDisplay.region,
-                countryToDisplay.subregion,
-                countryToDisplay.capital,
-                countryToDisplay.topLevelDomain,
-                currencies,
-                languages,
-                borderCountries);
+            detailedCountryCard.innerHTML = displayCard(countryToDisplay);
 
             const borderCountriesDiv = document.querySelector('.border-countries');
 
