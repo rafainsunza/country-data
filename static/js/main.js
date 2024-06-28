@@ -6,12 +6,9 @@ let maxPagesReached = false;
 let loadingData = false;
 let selectedCountry;
 
-localStorage.getItem('dark-mode') === null ?
-    localStorage.setItem('dark-mode', 'disabled') :
-    localStorage.getItem('dark-mode') === 'enabled' ?
-        body.classList.add('dark-mode') :
-        body.classList.remove('dark-mode');
+if (localStorage.getItem('dark-mode') === null) { localStorage.setItem('dark-mode', 'disabled') };
 
+body.classList.toggle('dark-mode', localStorage.getItem('dark-mode') === 'disabled');
 
 const fetchData = (dataKeys) => {
     return fetch('./static/data/data.json')
