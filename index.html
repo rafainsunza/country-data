@@ -13,10 +13,70 @@
     />
     <title>Frontend Mentor | Country Data</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/c7fc662f6d.js"
+      crossorigin="anonymous"
+    ></script>
+
     <link rel="stylesheet" href="./static/css/reset.css" />
     <link rel="stylesheet" href="./static/css/style.css" />
   </head>
   <body>
+    <header>
+      <a href="/" class="home-btn">Where in the world?</a>
+      <div class="contrast-button-container">
+        <button class="contrast-button">
+          <i class="fa-regular fa-moon"></i>
+          Dark Mode
+        </button>
+      </div>
+    </header>
+    <main>
+      <form action="#">
+        <div class="search-container">
+          <label for="search" hidden>Search for a country</label>
+          <button class="search-input-button">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          <input
+            type="search"
+            class="search-input"
+            id="search"
+            name="search"
+            placeholder="Search for a country..."
+          />
+        </div>
+
+        <div class="custom-select">
+          <button class="select-button">
+            <span>Filter by Region</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <ul class="select-dropdown">
+            <li class="dropdown-option">
+              <input
+                type="radio"
+                id="all"
+                class="dropdown-input"
+                name="region"
+              />
+              <label for="all">All</label>
+            </li>
+          </ul>
+        </div>
+      </form>
+
+      <div class="country-card-container"></div>
+    </main>
+
     <script src="./static/js/main.js"></script>
+    <script src="./static/js/country_cards.js"></script>
   </body>
 </html>

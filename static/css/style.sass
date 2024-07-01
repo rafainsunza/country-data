@@ -1,0 +1,63 @@
+@import 'variables'
+@import 'header'
+@import 'form'
+@import 'country_card'
+@import 'detailed_country_card'
+
+a
+    color: inherit
+    text-decoration: none
+    &:visited
+        color: inherit
+
+body
+    background-color: var(--background-color)
+    font-family: 'Nunito Sans'
+    font-size: 14px
+    font-weight: var(--light)
+    color: var(--text-color)
+
+.country-card-container
+    display: flex
+    flex-direction: column
+    flex-wrap: wrap
+    padding: 30px 20px 0 20px
+    @media (min-width: 768px)
+        padding: 30px 60px 0 60px
+        display: grid
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+        column-gap: 80px
+    @media (min-width: 1120px)
+        padding: 50px 60px 0 60px
+
+.error-message
+    font-size: 20px
+    padding-top: 190px
+    margin-bottom: 190px
+    height: 500px
+    text-align: center
+    grid-column: 1 / -1
+
+.fa-circle-exclamation
+    color: red
+    font-size: 25px
+
+.loader
+    background-color: hsla(209, 23%, 22%, 0.75)
+    height: 100%
+    width: 100%
+    position: fixed
+    top: 0
+    text-align: center
+    align-content: center
+
+.fa-spinner
+    animation: spin 2s linear infinite
+    padding: 10px 0
+    font-size: 75px
+    color: hsl(0, 0%, 100%)
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
