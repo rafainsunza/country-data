@@ -1,48 +1,46 @@
 form
     padding: 30px 20px
     @media (min-width: 768px)
-        padding: 30px 60px 
+        padding: 30px 60px
     @media (min-width: 1120px)
         display: grid
-        grid-template-columns: 60% 40% 
+        grid-template-columns: 60% 40%
         padding: 40px 60px 0 60px
-    
 
-.search-container 
-    position: relative
-
-.search-input
-    width: 100%
-    max-width: 500px
-    height: 50px
-    padding-left: 60px
-    background-color: var(--element-background-color)
-    color: var(--input-color)
-    outline: none
-    border: none
-    border-radius: 5px
-    box-shadow: var(--box-shadow)
+.search
+    &-container
+        position: relative
+    &-input
+        width: 100%
+        max-width: 500px
+        height: 50px
+        padding-left: 60px
+        background-color: var(--element-background-color)
+        color: var(--input-color)
+        outline: none
+        border: none
+        border-radius: 5px
+        box-shadow: var(--box-shadow)
     &::placeholder
         color: var(--input-color)
         opacity: 1
-
-.search-input-button 
-    position: absolute
-    top: 50%
-    transform: translateY(-50%)
-    padding: 0 20px
-    height: 100%
-    background-color: transparent
-    border: none
-    &:hover
-        cursor: pointer
+    &-input-button
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        padding: 0 20px
+        height: 100%
+        background-color: transparent
+        border: none
+        &:hover
+            cursor: pointer
 
 .fa-magnifying-glass
     color: var(--input-color)
-    
+
 .custom-select
     position: relative
-    margin: 40px 0 0 0 
+    margin: 40px 0 0 0
     :hover
         cursor: pointer
     @media (min-width: 1120px)
@@ -50,26 +48,26 @@ form
         display: flex
         justify-content: flex-end
 
-.select-button  
-    display: flex
-    align-items: center
-    justify-content: space-between
-    width: 60%
-    max-width: 230px
-    height: 50px
-    padding: 0 20px
-    outline: none
-    border: none
-    background-color: var(--element-background-color)
-    color: var(--text-color)
-    border-radius: 5px
-    box-shadow: var(--box-shadow)
+.select
+    &-button
+        display: flex
+        align-items: center
+        justify-content: space-between
+        width: 60%
+        max-width: 230px
+        height: 50px
+        padding: 0 20px
+        outline: none
+        border: none
+        background-color: var(--element-background-color)
+        color: var(--text-color)
+        border-radius: 5px
+        box-shadow: var(--box-shadow)
+    &-dropdown
+        display: none
 
 .fa-chevron-down
     font-size: 8px
-
-.select-dropdown
-    display: none
 
 .active
     position: absolute
@@ -86,9 +84,9 @@ form
     @media (min-width: 1120px)
         top: 50px
 
-.dropdown-option
-    height: 30px
-    align-content: center
-        
-.dropdown-input
-    opacity: 0
+.dropdown
+    &-option
+        height: 30px
+        align-content: center
+    &-input
+        opacity: 0

@@ -16,25 +16,35 @@
 .fa-arrow-left-long
     padding-right: 10px
 
-.detailed-card-container
-    padding: 30px 20px 0 20px
-    margin: auto
-    max-width: 400px
+.detailed
+    &-card-container
+        padding: 30px 20px 0 20px
+        margin: auto
+        max-width: 400px
 
-    @media (min-width: 920px)
-        padding: 30px 60px 0 60px
-        margin: 0
-        max-width: 100%
+        @media (min-width: 920px)
+            padding: 30px 60px 0 60px
+            margin: 0
+            max-width: 100%
 
-.detailed-country-card
-    @media (min-width: 920px)
-        display: flex
-        justify-content: space-between
+    &-country-card
+        @media (min-width: 920px)
+            display: flex
+            justify-content: space-between
 
-    @media (min-width: 1076px)
-        justify-content: flex-start
-    @media (min-width: 1200px)
-        justify-content: center
+        @media (min-width: 1076px)
+            justify-content: flex-start
+        @media (min-width: 1200px)
+            justify-content: center
+    &-flag
+        width: 280px
+        height: 185px
+        object-fit: cover
+        margin: 20px 0
+        @media (min-width: 920px)
+            width: 50%
+            max-width: 420px
+            height: 280px
 
 .details-container
     @media (min-width: 920px)
@@ -45,16 +55,6 @@
     @media (min-width: 1076px)
         margin-left: 100px
 
-.detailed-flag
-    width: 280px
-    height: 185px
-    object-fit: cover
-    margin: 20px 0
-    @media (min-width: 920px)
-        width: 50%
-        max-width: 420px
-        height: 280px
-
 .detail-page-name
     font-size: 20px
     font-weight: var(--boldest)
@@ -64,8 +64,8 @@
 
 .details
     margin-bottom: 40px
-.details-li
-    margin-bottom: 20px
+    &-li
+        margin-bottom: 20px
 
 .border-countries-container
     margin-bottom: 60px
@@ -76,8 +76,9 @@
     display: flex
     flex-wrap: wrap
 
-.border-countries-title
-    margin: 20px 0
+.border-countries
+    &-title
+        margin: 20px 0
 
 .border-country
     box-shadow: var(--box-shadow)
