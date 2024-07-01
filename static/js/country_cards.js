@@ -71,8 +71,10 @@ const displayMoreCountries = () => {
                 if (pageCount <= maxPages) {
                     const moreCountryData = filteredData.slice(startIndex, endIndex);
                     displayCards(moreCountryData);
-                } else {
-                    maxPagesReached = true;
+                }
+
+                if (pageCount === maxPages) {
+                    maxPagesReached = true
                 }
 
                 displayLoader(false);
