@@ -153,13 +153,19 @@ const setFilter = (event) => {
     filterActive = true;
     searchActive = false;
 
-    let input = event.target.closest('li').querySelector('input');
+    const li = event.target.closest('li');
+    const input = li.querySelector('input');
 
     if (input.id === 'all') {
         filterActive = false;
     }
-
     activeFilter = input.id;
+
+
+    // Remove all active-filter classes so a new one can be set
+    const dropdownOptions = selectDropDown.querySelectorAll('.dropdown-option');
+    dropdownOptions.forEach((option) => { option.classList.remove('active-filter') });
+    li.classList.add('active-filter');
 
     selectBtn.firstElementChild.innerText = input.labels[0].innerText;
     selectDropDown.classList.toggle('active');
