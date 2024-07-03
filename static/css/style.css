@@ -50,10 +50,7 @@ header {
   }
 }
 
-.tile-btn-1,
-.tile-btn-2,
-.tile-btn-3,
-.tile-btn-4 {
+.tile-btn {
   display: none;
   width: 50px;
   padding: 5px 0;
@@ -64,10 +61,7 @@ header {
   border-radius: 5px;
   box-shadow: var(--box-shadow);
 }
-.tile-btn-1:hover,
-.tile-btn-2:hover,
-.tile-btn-3:hover,
-.tile-btn-4:hover {
+.tile-btn:hover {
   background-color: var(--selected-region-background-color);
   cursor: pointer;
 }
@@ -433,7 +427,8 @@ body {
   .country-card-container {
     padding: 30px 60px 0 60px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    justify-content: center;
+    grid-template-columns: repeat(auto-fill, 280px);
     column-gap: 80px;
   }
 }
