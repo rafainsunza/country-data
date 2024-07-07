@@ -50,47 +50,6 @@ header {
   }
 }
 
-.tile-btn {
-  display: none;
-  width: 50px;
-  padding: 5px 0;
-  margin-right: 10px;
-  background-color: var(--element-background-color);
-  color: var(--text-color);
-  border: none;
-  border-radius: 5px;
-  box-shadow: var(--box-shadow);
-}
-.tile-btn:hover {
-  background-color: var(--selected-region-background-color);
-  cursor: pointer;
-}
-
-@media (min-width: 768px) {
-  .tile-btn-1,
-  .tile-btn-2 {
-    display: inline-block;
-  }
-}
-@media (min-width: 1120px) {
-  .tile-btn-1 {
-    display: none;
-  }
-  .tile-btn-2,
-  .tile-btn-3 {
-    display: inline-block;
-  }
-}
-@media (min-width: 1480px) {
-  .tile-btn-1,
-  .tile-btn-2 {
-    display: none;
-  }
-  .tile-btn-3,
-  .tile-btn-4 {
-    display: inline-block;
-  }
-}
 .contrast-button-container {
   display: flex;
   align-items: center;
@@ -112,23 +71,31 @@ header {
 }
 
 form {
+  display: flex;
+  flex-direction: column;
   padding: 30px 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   form {
     padding: 30px 60px;
   }
 }
-@media (min-width: 1120px) {
+@media (min-width: 1040px) {
   form {
-    display: grid;
-    grid-template-columns: 60% 40%;
-    padding: 40px 60px 0 60px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 30px 60px 0 60px;
   }
 }
 
 .search-container {
   position: relative;
+  margin-bottom: 20px;
+}
+@media (min-width: 1040px) {
+  .search-container {
+    width: 50%;
+  }
 }
 .search-input {
   width: 100%;
@@ -164,17 +131,16 @@ form {
 }
 
 .custom-select {
+  margin-top: 20px;
   position: relative;
-  margin: 40px 0 0 0;
 }
 .custom-select :hover {
   cursor: pointer;
 }
-@media (min-width: 1120px) {
+@media (min-width: 1040px) {
   .custom-select {
-    margin: 0;
-    display: flex;
-    justify-content: flex-end;
+    width: 20%;
+    margin-top: 0;
   }
 }
 
@@ -182,8 +148,7 @@ form {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 60%;
-  max-width: 230px;
+  width: 250px;
   height: 50px;
   padding: 0 20px;
   outline: none;
@@ -192,6 +157,11 @@ form {
   color: var(--text-color);
   border-radius: 5px;
   box-shadow: var(--box-shadow);
+}
+@media (min-width: 1040px) {
+  .select-button {
+    width: 100%;
+  }
 }
 .select-dropdown {
   display: none;
@@ -204,9 +174,7 @@ form {
 .active {
   position: absolute;
   display: inline-block;
-  width: 60%;
-  max-width: 230px;
-  padding: 10px 0;
+  width: 250px;
   margin-top: 5px;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
@@ -215,14 +183,14 @@ form {
 .active :hover {
   cursor: pointer;
 }
-@media (min-width: 1120px) {
+@media (min-width: 1040px) {
   .active {
-    top: 50px;
+    width: 100%;
   }
 }
 
 .dropdown-option {
-  height: 30px;
+  padding: 15px 0;
   align-content: center;
 }
 .dropdown-option:hover {
@@ -236,24 +204,67 @@ form {
   background-color: var(--selected-region-background-color);
 }
 
-.country-card {
+.tile-btn {
+  display: none;
+  height: 50px;
+  width: 70px;
+  padding: 5px 0;
+  margin-right: 10px;
   background-color: var(--element-background-color);
-  box-shadow: var(--box-shadow);
+  color: var(--text-color);
+  border: none;
   border-radius: 5px;
-  width: 280px;
-  height: 375px;
-  padding: 0 0 40px 0;
-  margin: 0px auto 80px auto;
+  box-shadow: var(--box-shadow);
 }
-@media (min-width: 1490px) {
-  .country-card {
-    width: 100%;
+.tile-btn:hover {
+  background-color: var(--selected-region-background-color);
+  cursor: pointer;
+}
+.tile-btn-container {
+  margin-top: 20px;
+}
+@media (min-width: 1040px) {
+  .tile-btn-container {
+    margin-top: 0;
   }
 }
 
+@media (min-width: 720px) {
+  .tile-btn-1,
+  .tile-btn-2 {
+    display: inline-block;
+  }
+}
+@media (min-width: 1040px) {
+  .tile-btn-1 {
+    display: none;
+  }
+  .tile-btn-2,
+  .tile-btn-3 {
+    display: inline-block;
+  }
+}
+@media (min-width: 1360px) {
+  .tile-btn-1,
+  .tile-btn-2 {
+    display: none;
+  }
+  .tile-btn-3,
+  .tile-btn-4 {
+    display: inline-block;
+  }
+}
+.country-card {
+  width: 100%;
+  background-color: var(--element-background-color);
+  box-shadow: var(--box-shadow);
+  border-radius: 5px;
+  padding: 0 0 40px 0;
+  margin: 0px auto 80px auto;
+}
 .country-flag {
   width: 100%;
-  height: 185px;
+  aspect-ratio: 16/9;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }
@@ -418,23 +429,15 @@ body {
 }
 
 .country-card-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  justify-content: flex-start;
+  column-gap: 40px;
   padding: 30px 20px 0 20px;
 }
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .country-card-container {
     padding: 30px 60px 0 60px;
-    display: grid;
-    justify-content: center;
-    grid-template-columns: repeat(auto-fill, 280px);
-    column-gap: 80px;
-  }
-}
-@media (min-width: 1120px) {
-  .country-card-container {
-    padding: 50px 60px 0 60px;
   }
 }
 

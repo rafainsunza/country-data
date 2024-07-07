@@ -2,6 +2,7 @@ const selectDropDown = document.querySelector('.select-dropdown');
 const selectBtn = document.querySelector('.select-button');
 const searchInput = document.querySelector('.search-input');
 const searchInputBtn = document.querySelector('.search-input-button');
+const tileBtns = document.querySelectorAll('.tile-btn');
 
 const cardInfo = ['flag', 'name', 'population', 'region', 'capital'];
 const cardsPerPage = 12;
@@ -189,6 +190,65 @@ const setSearch = (event) => {
     selectBtn.firstElementChild.innerText = 'Filter by Region';
 }
 
+const changeGridLayout = (event) => {
+    // Make sure target is always the button
+    const btn = event.target.closest('button');
+
+    switch (btn.classList[1]) {
+        case 'tile-btn-1':
+            countryCardContainer.style.gridTemplateColumns = 'repeat(1, minmax(280px, 1fr))';
+            break;
+        case 'tile-btn-2':
+            countryCardContainer.style.gridTemplateColumns = 'repeat(2, minmax(280px, 1fr))';
+            break;
+        case 'tile-btn-3':
+            countryCardContainer.style.gridTemplateColumns = 'repeat(3, minmax(280px, 1fr))';
+            break;
+        case 'tile-btn-4':
+            countryCardContainer.style.gridTemplateColumns = 'repeat(4, minmax(280px, 1fr))';
+            break;
+    }
+}
+
+const resetGridLayout = (event) => {
+    const window = event.target;
+
+    const smallScreen = window.innerWidth < 720
+    const mediumScreen = window.innerWidth >= 720 && window.innerWidth < 1040
+    const largeScreen = window.innerWidth >= 1040 && window.innerWidth < 1360
+    const xtraLargeScreen = window.innerWidth >= 1360
+
+    const tileLayout1 = countryCardContainer.style.gridTemplateColumns === 'repeat(1, minmax(280px, 1fr))';
+    const tileLayout2 = countryCardContainer.style.gridTemplateColumns === 'repeat(2, minmax(280px, 1fr))';
+    const tileLayout3 = countryCardContainer.style.gridTemplateColumns === 'repeat(3, minmax(280px, 1fr))';
+    const tileLayout4 = countryCardContainer.style.gridTemplateColumns === 'repeat(4, minmax(280px, 1fr))';
+    // If amount of tiles exceeds the window width, remove the inline styling placed by the tile-btn.
+    // Or if the amount of tiles does not correspond with the amount of tiles that can be chosen from, also remove the inline styling
+
+    if (smallScreen) {
+        countryCardContainer.style.gridTemplateColumns = '';
+    }
+
+    if (mediumScreen) {
+        if (!tileLayout1 && !tileLayout2) {
+            countryCardContainer.style.gridTemplateColumns = '';
+        }
+    }
+
+    if (largeScreen) {
+        if (!tileLayout2 && !tileLayout3) {
+            countryCardContainer.style.gridTemplateColumns = '';
+        }
+    }
+
+    if (xtraLargeScreen) {
+        if (!tileLayout3 && !tileLayout4) {
+            countryCardContainer.style.gridTemplateColumns = ''
+        }
+    }
+
+}
+
 const openSelectedCountryPage = (event) => {
     event.preventDefault();
 
@@ -215,5 +275,7 @@ selectBtn.addEventListener('click', (event) => {
 selectDropDown.addEventListener('click', setFilter);
 searchInputBtn.addEventListener('click', setSearch);
 countryCardContainer.addEventListener('click', openSelectedCountryPage);
+tileBtns.forEach((button) => button.addEventListener('click', changeGridLayout));
 window.addEventListener('scroll', displayMoreCountries);
+window.addEventListener('resize', resetGridLayout);
 

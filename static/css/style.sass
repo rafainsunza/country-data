@@ -18,18 +18,13 @@ body
     color: var(--text-color)
 
 .country-card-container
-    display: flex
-    flex-direction: column
-    flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+    justify-content: flex-start
+    column-gap: 40px
     padding: 30px 20px 0 20px
-    @media (min-width: 768px)
+    @media (min-width: 640px)
         padding: 30px 60px 0 60px
-        display: grid
-        justify-content: center
-        grid-template-columns: repeat(auto-fill, 280px)
-        column-gap: 80px
-    @media (min-width: 1120px)
-        padding: 50px 60px 0 60px
 
 .error-message
     font-size: 20px

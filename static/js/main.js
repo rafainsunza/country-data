@@ -1,7 +1,6 @@
 const countryCardContainer = document.querySelector('.country-card-container');
 const darkModeBtn = document.querySelector('.contrast-button');
 const body = document.querySelector('body');
-const tileBtns = document.querySelectorAll('.tile-btn');
 
 let maxPagesReached = false;
 let loadingData = false;
@@ -111,53 +110,6 @@ const toggleDarkMode = () => {
     }
 }
 
-const changeGridLayout = (event) => {
-    // Make sure target is always the button
-    const btn = event.target.closest('button');
-
-    switch (btn.classList[1]) {
-        case 'tile-btn-1':
-            countryCardContainer.style = `grid-template-columns: repeat(1, 280px);`;
-            break;
-        case 'tile-btn-2':
-            countryCardContainer.style = `grid-template-columns: repeat(2, 280px)`;
-            break;
-        case 'tile-btn-3':
-            countryCardContainer.style = `grid-template-columns: repeat(3, 280px)`;
-            break;
-        case 'tile-btn-4':
-            countryCardContainer.style = `grid-template-columns: repeat(4, 280px)`;
-            break;
-    }
-}
-
-const resetGridLayout = (event) => {
-    const window = event.target;
-
-    const smallScreen = window.innerWidth >= 768 && window.innerWidth < 1120
-    const mediumScreen = window.innerWidth >= 1120 && window.innerWidth < 1480
-    const largeScreen = window.innerWidth >= 1480
-
-    // If amount of tiles exceeds the window width, remove the inline styling placed by the tile-btn.
-    // Or if the amount of tiles does not correspond with the amount of tiles that can be chosen from, also remove the inline styling
-
-    if (smallScreen && countryCardContainer.style.gridTemplateColumns === 'repeat(3, 280px)') {
-        countryCardContainer.style.gridTemplateColumns = '';
-    }
-
-    if (mediumScreen && countryCardContainer.style.gridTemplateColumns === 'repeat(1, 280px)' ||
-        mediumScreen && countryCardContainer.style.gridTemplateColumns == 'repeat(4, 280px)'
-    ) {
-        countryCardContainer.style.gridTemplateColumns = '';
-    }
-
-    if (largeScreen && countryCardContainer.style.gridTemplateColumns === 'repeat(2, 280px)') {
-        countryCardContainer.style.gridTemplateColumns = '';
-    }
-}
-
 setInitialCookies();
 
 darkModeBtn.addEventListener('click', toggleDarkMode);
-tileBtns.forEach((button) => button.addEventListener('click', changeGridLayout));
-window.addEventListener('resize', resetGridLayout);

@@ -1,15 +1,21 @@
 form
+
+    display: flex
+    flex-direction: column
     padding: 30px 20px
-    @media (min-width: 768px)
+    @media (min-width: 640px)
         padding: 30px 60px
-    @media (min-width: 1120px)
-        display: grid
-        grid-template-columns: 60% 40%
-        padding: 40px 60px 0 60px
+    @media (min-width: 1040px)
+        flex-direction: row
+        justify-content: space-between
+        padding: 30px 60px 0 60px
 
 .search
     &-container
         position: relative
+        margin-bottom: 20px
+        @media (min-width: 1040px)
+            width: 50%
     &-input
         width: 100%
         max-width: 500px
@@ -39,22 +45,20 @@ form
     color: var(--input-color)
 
 .custom-select
+    margin-top: 20px
     position: relative
-    margin: 40px 0 0 0
     :hover
         cursor: pointer
-    @media (min-width: 1120px)
-        margin: 0
-        display: flex
-        justify-content: flex-end
+    @media (min-width: 1040px)
+        width: 20%
+        margin-top: 0
 
 .select
     &-button
         display: flex
         align-items: center
         justify-content: space-between
-        width: 60%
-        max-width: 230px
+        width: 250px
         height: 50px
         padding: 0 20px
         outline: none
@@ -63,6 +67,8 @@ form
         color: var(--text-color)
         border-radius: 5px
         box-shadow: var(--box-shadow)
+        @media (min-width: 1040px)
+            width: 100%
     &-dropdown
         display: none
 
@@ -72,21 +78,19 @@ form
 .active
     position: absolute
     display: inline-block
-    width: 60%
-    max-width: 230px
-    padding: 10px 0
+    width: 250px
     margin-top: 5px
     border-radius: 5px
     box-shadow: var(--box-shadow)
     background-color: var(--element-background-color)
     :hover
         cursor: pointer
-    @media (min-width: 1120px)
-        top: 50px
+    @media (min-width: 1040px)
+        width: 100%
 
 .dropdown
     &-option
-        height: 30px
+        padding: 15px 0
         align-content: center
         &:hover
             background-color: var(--selected-region-background-color)
@@ -95,3 +99,42 @@ form
 
 .active-filter
     background-color: var(--selected-region-background-color)
+
+.tile-btn
+    display: none
+    height: 50px
+    width: 70px
+    padding: 5px 0
+    margin-right: 10px
+    background-color: var(--element-background-color)
+    color: var(--text-color)
+    border: none
+    border-radius: 5px
+    box-shadow: var(--box-shadow)
+    &:hover
+        background-color: var(--selected-region-background-color)
+        cursor: pointer
+    &-container
+        margin-top: 20px
+        @media (min-width: 1040px)
+            margin-top: 0
+
+@media (min-width: 720px)
+    .tile-btn-1,
+    .tile-btn-2
+        display: inline-block
+
+@media (min-width: 1040px)
+    .tile-btn-1
+        display: none
+    .tile-btn-2,
+    .tile-btn-3
+        display: inline-block
+
+@media (min-width: 1360px)
+    .tile-btn-1,
+    .tile-btn-2
+        display: none
+    .tile-btn-3,
+    .tile-btn-4
+        display: inline-block
