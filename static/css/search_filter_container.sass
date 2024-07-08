@@ -1,22 +1,18 @@
 .search
     &-filter-container
         display: flex
-        flex-direction: column
+        flex-wrap: wrap
         padding: 30px 20px
         @media (min-width: 600px)
             padding: 30px 60px
-        @media (min-width: 1040px)
-            flex-direction: row
-            justify-content: space-between
-            padding: 30px 60px 0 60px
+
     &-container
+        width: 100%
         position: relative
         margin-bottom: 20px
-        @media (min-width: 1040px)
-            width: 50%
+
     &-input
         width: 100%
-        max-width: 500px
         height: 50px
         padding-left: 60px
         background-color: var(--element-background-color)
@@ -43,20 +39,20 @@
     color: var(--input-color)
 
 .custom-select
+    width: 100%
     margin-top: 20px
     position: relative
     :hover
         cursor: pointer
-    @media (min-width: 1040px)
-        width: 20%
-        margin-top: 0
+    @media (min-width: 600px)
+        width: 50%
 
 .select
     &-button
         display: flex
         align-items: center
         justify-content: space-between
-        width: 250px
+        width: 100%
         height: 50px
         padding: 0 20px
         outline: none
@@ -65,8 +61,7 @@
         color: var(--text-color)
         border-radius: 5px
         box-shadow: var(--box-shadow)
-        @media (min-width: 1040px)
-            width: 100%
+
     &-dropdown
         display: none
 
@@ -76,15 +71,13 @@
 .active
     position: absolute
     display: inline-block
-    width: 250px
+    width: 100%
     margin-top: 5px
     border-radius: 5px
     box-shadow: var(--box-shadow)
     background-color: var(--element-background-color)
     :hover
         cursor: pointer
-    @media (min-width: 1040px)
-        width: 100%
 
 .dropdown
     &-option
@@ -113,9 +106,13 @@
         background-color: var(--selected-region-background-color)
         cursor: pointer
     &-container
+        display: flex
+        justify-content: center
         margin-top: 20px
-        @media (min-width: 1040px)
-            margin-top: 0
+        width: 100%
+        @media (min-width: 600px)
+            width: 50%
+            justify-content: flex-end
 
 @media (min-width: 280px)
     .tile-btn-1,
