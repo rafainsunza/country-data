@@ -92,19 +92,21 @@
     background-color: var(--selected-region-background-color)
 
 .tile-btn
-    display: none
+    display: inline-block
     height: 50px
     width: 70px
     padding: 5px 0
     margin-right: 10px
     background-color: var(--element-background-color)
     color: var(--text-color)
+    font-size: 16px
     border: none
     border-radius: 5px
     box-shadow: var(--box-shadow)
     &:hover
         background-color: var(--selected-region-background-color)
         cursor: pointer
+
     &-container
         display: flex
         justify-content: center
@@ -114,22 +116,21 @@
             width: 50%
             justify-content: flex-end
 
-@media (min-width: 280px)
-    .tile-btn-1,
-    .tile-btn-2
-        display: inline-block
+    &-less::before
+        font: var(--fa-solid)
+        content: '\31'
+        @media (min-width: 1040px)
+            content: '\32'
+        @media (min-width: 1360px)
+            content: '\33'
 
-@media (min-width: 1040px)
-    .tile-btn-1
-        display: none
-    .tile-btn-2,
-    .tile-btn-3
-        display: inline-block
+    &-more::before
+        font: var(--fa-solid)
+        content: '\32'
+        @media (min-width: 1040px)
+            content: '\33'
+        @media (min-width: 1360px)
+            content: '\34'
 
-@media (min-width: 1360px)
-    .tile-btn-1,
-    .tile-btn-2
-        display: none
-    .tile-btn-3,
-    .tile-btn-4
-        display: inline-block
+    &-active
+        background-color: var(--selected-region-background-color)

@@ -182,13 +182,14 @@ header {
 }
 
 .tile-btn {
-  display: none;
+  display: inline-block;
   height: 50px;
   width: 70px;
   padding: 5px 0;
   margin-right: 10px;
   background-color: var(--element-background-color);
   color: var(--text-color);
+  font-size: 16px;
   border: none;
   border-radius: 5px;
   box-shadow: var(--box-shadow);
@@ -209,32 +210,38 @@ header {
     justify-content: flex-end;
   }
 }
-
-@media (min-width: 280px) {
-  .tile-btn-1,
-  .tile-btn-2 {
-    display: inline-block;
-  }
+.tile-btn-less::before {
+  font: var(--fa-solid);
+  content: "1";
 }
 @media (min-width: 1040px) {
-  .tile-btn-1 {
-    display: none;
-  }
-  .tile-btn-2,
-  .tile-btn-3 {
-    display: inline-block;
+  .tile-btn-less::before {
+    content: "2";
   }
 }
 @media (min-width: 1360px) {
-  .tile-btn-1,
-  .tile-btn-2 {
-    display: none;
-  }
-  .tile-btn-3,
-  .tile-btn-4 {
-    display: inline-block;
+  .tile-btn-less::before {
+    content: "3";
   }
 }
+.tile-btn-more::before {
+  font: var(--fa-solid);
+  content: "2";
+}
+@media (min-width: 1040px) {
+  .tile-btn-more::before {
+    content: "3";
+  }
+}
+@media (min-width: 1360px) {
+  .tile-btn-more::before {
+    content: "4";
+  }
+}
+.tile-btn-active {
+  background-color: var(--selected-region-background-color);
+}
+
 .country-card {
   width: 100%;
   background-color: var(--element-background-color);
@@ -455,6 +462,38 @@ body {
 }
 @media (min-width: 1360px) {
   .country-card-container {
+    grid-template-columns: repeat(4, minmax(280px, 1fr));
+  }
+}
+
+@media (min-width: 280px) {
+  .less-tiles {
+    grid-template-columns: repeat(1, minmax(280px, 1fr));
+  }
+}
+@media (min-width: 1040px) {
+  .less-tiles {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+  }
+}
+@media (min-width: 1360px) {
+  .less-tiles {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+  }
+}
+
+@media (min-width: 280px) {
+  .more-tiles {
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+  }
+}
+@media (min-width: 1040px) {
+  .more-tiles {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+  }
+}
+@media (min-width: 1360px) {
+  .more-tiles {
     grid-template-columns: repeat(4, minmax(280px, 1fr));
   }
 }

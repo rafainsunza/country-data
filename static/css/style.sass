@@ -29,6 +29,21 @@ body
     @media (min-width: 1360px)
         grid-template-columns: repeat(4, minmax(280px, 1fr))
 
+.less-tiles
+    @media (min-width: 280px)
+        grid-template-columns: repeat(1, minmax(280px, 1fr))
+    @media (min-width: 1040px)
+        grid-template-columns: repeat(2, minmax(280px, 1fr))
+    @media (min-width: 1360px)
+        grid-template-columns: repeat(3, minmax(280px, 1fr))
+
+.more-tiles
+    @media (min-width: 280px)
+        grid-template-columns: repeat(2, minmax(140px, 1fr))
+    @media (min-width: 1040px)
+        grid-template-columns: repeat(3, minmax(280px, 1fr))
+    @media (min-width: 1360px)
+        grid-template-columns: repeat(4, minmax(280px, 1fr))
 .error-message
     font-size: 20px
     padding-top: 190px
