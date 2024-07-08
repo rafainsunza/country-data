@@ -147,7 +147,6 @@ const addRegionsToSelectDropdown = () => {
 }
 
 const setFilter = (event) => {
-    event.preventDefault();
     pageCount = 1;
     maxPagesReached = false;
 
@@ -175,7 +174,6 @@ const setFilter = (event) => {
 }
 
 const setSearch = (event) => {
-    event.preventDefault();
     pageCount = 1;
 
     searchActive = true;
@@ -270,7 +268,6 @@ addRegionsToSelectDropdown();
 
 
 selectBtn.addEventListener('click', (event) => {
-    event.preventDefault();
     selectDropDown.classList.toggle('active');
 });
 selectDropDown.addEventListener('click', setFilter);
