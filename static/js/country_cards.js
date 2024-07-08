@@ -199,7 +199,7 @@ const changeGridLayout = (event) => {
             countryCardContainer.style.gridTemplateColumns = 'repeat(1, minmax(280px, 1fr))';
             break;
         case 'tile-btn-2':
-            countryCardContainer.style.gridTemplateColumns = 'repeat(2, minmax(280px, 1fr))';
+            countryCardContainer.style.gridTemplateColumns = 'repeat(2, minmax(140px, 1fr))';
             break;
         case 'tile-btn-3':
             countryCardContainer.style.gridTemplateColumns = 'repeat(3, minmax(280px, 1fr))';
@@ -219,16 +219,17 @@ const resetGridLayout = (event) => {
     const xtraLargeScreen = window.innerWidth >= 1360
 
     const tileLayout1 = countryCardContainer.style.gridTemplateColumns === 'repeat(1, minmax(280px, 1fr))';
-    const tileLayout2 = countryCardContainer.style.gridTemplateColumns === 'repeat(2, minmax(280px, 1fr))';
+    const tileLayout2 = countryCardContainer.style.gridTemplateColumns === 'repeat(2, minmax(140px, 1fr))';
     const tileLayout3 = countryCardContainer.style.gridTemplateColumns === 'repeat(3, minmax(280px, 1fr))';
     const tileLayout4 = countryCardContainer.style.gridTemplateColumns === 'repeat(4, minmax(280px, 1fr))';
     // If amount of tiles exceeds the window width, remove the inline styling placed by the tile-btn.
     // Or if the amount of tiles does not correspond with the amount of tiles that can be chosen from, also remove the inline styling
 
     if (smallScreen) {
-        countryCardContainer.style.gridTemplateColumns = '';
+        if (!tileLayout1 && !tileLayout2) {
+            countryCardContainer.style.gridTemplateColumns = '';
+        }
     }
-
     if (mediumScreen) {
         if (!tileLayout1 && !tileLayout2) {
             countryCardContainer.style.gridTemplateColumns = '';

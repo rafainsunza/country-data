@@ -32,7 +32,7 @@ header {
   box-shadow: var(--box-shadow);
   background-color: var(--element-background-color);
 }
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   header {
     padding: 30px 60px;
   }
@@ -75,7 +75,7 @@ form {
   flex-direction: column;
   padding: 30px 20px;
 }
-@media (min-width: 640px) {
+@media (min-width: 600px) {
   form {
     padding: 30px 60px;
   }
@@ -229,7 +229,7 @@ form {
   }
 }
 
-@media (min-width: 720px) {
+@media (min-width: 280px) {
   .tile-btn-1,
   .tile-btn-2 {
     display: inline-block;
@@ -259,8 +259,14 @@ form {
   background-color: var(--element-background-color);
   box-shadow: var(--box-shadow);
   border-radius: 5px;
-  padding: 0 0 40px 0;
-  margin: 0px auto 80px auto;
+  padding: 0 0 20px 0;
+  margin-bottom: 20px;
+}
+@media (min-width: 600px) {
+  .country-card {
+    margin-bottom: 80px;
+    padding: 0 0 40px 0;
+  }
 }
 .country-flag {
   width: 100%;
@@ -269,21 +275,46 @@ form {
   border-radius: 5px 5px 0 0;
 }
 .country-name {
-  font-size: 18px;
+  text-align: center;
+  font-size: 14px;
   font-weight: var(--boldest);
-  padding: 25px 20px;
+  padding: 15px 10px;
+}
+@media (min-width: 600px) {
+  .country-name {
+    font-size: 18px;
+    padding: 25px 20px;
+    text-align: start;
+  }
 }
 
 .card-ul {
-  padding: 0 20px;
+  text-align: center;
+  padding: 0 10px;
+}
+@media (min-width: 600px) {
+  .card-ul {
+    padding: 0 20px;
+    text-align: start;
+  }
 }
 .card-li {
+  display: flex;
+  flex-direction: column;
   padding: 5px 0;
+}
+@media (min-width: 600px) {
+  .card-li {
+    flex-direction: row;
+  }
 }
 
 .span-category {
   font-weight: var(--bold);
-  font-size: 16px;
+  font-size: 12px;
+}
+.span-value {
+  font-size: 12px;
 }
 
 .back-btn {
@@ -432,11 +463,12 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   justify-content: flex-start;
-  column-gap: 40px;
+  column-gap: 10px;
   padding: 30px 20px 0 20px;
 }
-@media (min-width: 640px) {
+@media (min-width: 600px) {
   .country-card-container {
+    column-gap: 40px;
     padding: 30px 60px 0 60px;
   }
 }
