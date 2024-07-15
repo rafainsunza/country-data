@@ -2,6 +2,7 @@ const selectDropDown = document.querySelector('.select-dropdown');
 const selectBtn = document.querySelector('.select-button');
 const searchInput = document.querySelector('.search-input');
 const searchInputBtn = document.querySelector('.search-input-button');
+const tileBtns = document.querySelectorAll('.tile-btn');
 
 const cardInfo = ['flag', 'name', 'population', 'region', 'capital'];
 const cardsPerPage = 12;
@@ -146,20 +147,25 @@ const addRegionsToSelectDropdown = () => {
 }
 
 const setFilter = (event) => {
-    event.preventDefault();
     pageCount = 1;
     maxPagesReached = false;
 
     filterActive = true;
     searchActive = false;
 
-    let input = event.target.closest('li').querySelector('input');
+    const li = event.target.closest('li');
+    const input = li.querySelector('input');
 
     if (input.id === 'all') {
         filterActive = false;
     }
-
     activeFilter = input.id;
+
+
+    // Remove all active-filter classes so a new one can be set
+    const dropdownOptions = selectDropDown.querySelectorAll('.dropdown-option');
+    dropdownOptions.forEach((option) => { option.classList.remove('active-filter') });
+    li.classList.add('active-filter');
 
     selectBtn.firstElementChild.innerText = input.labels[0].innerText;
     selectDropDown.classList.toggle('active');
@@ -168,7 +174,6 @@ const setFilter = (event) => {
 }
 
 const setSearch = (event) => {
-    event.preventDefault();
     pageCount = 1;
 
     searchActive = true;
@@ -181,6 +186,36 @@ const setSearch = (event) => {
 
     searchInput.value = '';
     selectBtn.firstElementChild.innerText = 'Filter by Region';
+}
+
+const changeGridLayout = (event) => {
+    // Make sure target is always the button
+    const btn = event.target.closest('button');
+
+    if (btn.classList[1] === 'tile-btn-less') {
+        countryCardContainer.classList.toggle('less-tiles', btn.classList[1] !== 'less-tiles');
+        countryCardContainer.classList.toggle('more-tiles', btn.classList[1] === 'more-tiles');
+
+        const moreBtn = Array.from(tileBtns).filter(tileBtn => tileBtn.classList.contains('tile-btn-more'));
+        if (moreBtn[0].classList.contains('tile-btn-active')) {
+            moreBtn[0].classList.remove('tile-btn-active')
+        }
+
+        btn.classList.add('tile-btn-active');
+    }
+
+    if (btn.classList[1] === 'tile-btn-more') {
+        countryCardContainer.classList.toggle('more-tiles', btn.classList[1] !== 'more-tiles');
+        countryCardContainer.classList.toggle('less-tiles', btn.classList[1] === 'less-tiles');
+
+        const lessBtn = Array.from(tileBtns).filter(tileBtn => tileBtn.classList.contains('tile-btn-less'));
+        if (lessBtn[0].classList.contains('tile-btn-active')) {
+            lessBtn[0].classList.remove('tile-btn-active')
+        }
+
+        btn.classList.add('tile-btn-active');
+    }
+
 }
 
 const openSelectedCountryPage = (event) => {
@@ -203,11 +238,11 @@ addRegionsToSelectDropdown();
 
 
 selectBtn.addEventListener('click', (event) => {
-    event.preventDefault();
     selectDropDown.classList.toggle('active');
 });
 selectDropDown.addEventListener('click', setFilter);
 searchInputBtn.addEventListener('click', setSearch);
 countryCardContainer.addEventListener('click', openSelectedCountryPage);
+tileBtns.forEach((button) => button.addEventListener('click', changeGridLayout));
 window.addEventListener('scroll', displayMoreCountries);
 

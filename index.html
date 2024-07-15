@@ -31,6 +31,7 @@
   <body>
     <header>
       <a href="/" class="home-btn">Where in the world?</a>
+
       <div class="contrast-button-container">
         <button class="contrast-button">
           <i class="fa-regular fa-moon"></i>
@@ -39,7 +40,7 @@
       </div>
     </header>
     <main>
-      <form action="#">
+      <div class="search-filter-container">
         <div class="search-container">
           <label for="search" hidden>Search for a country</label>
           <button class="search-input-button">
@@ -71,12 +72,18 @@
             </li>
           </ul>
         </div>
-      </form>
+
+        <div class="tile-btn-container">
+          <button class="tile-btn tile-btn-less"></button>
+          <button class="tile-btn tile-btn-more"></button>
+        </div>
+      </div>
 
       <div class="country-card-container"></div>
     </main>
 
     <script src="./static/js/main.js"></script>
     <script src="./static/js/country_cards.js"></script>
+    <script src="./static/js/cookies.js"></script>
   </body>
 </html>

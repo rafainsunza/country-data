@@ -1,6 +1,6 @@
 @import 'variables'
 @import 'header'
-@import 'form'
+@import 'search_filter_container'
 @import 'country_card'
 @import 'detailed_country_card'
 
@@ -18,18 +18,32 @@ body
     color: var(--text-color)
 
 .country-card-container
-    display: flex
-    flex-direction: column
-    flex-wrap: wrap
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
+    justify-content: flex-start
+    column-gap: 10px
     padding: 30px 20px 0 20px
-    @media (min-width: 768px)
+    @media (min-width: 600px)
+        column-gap: 40px
         padding: 30px 60px 0 60px
-        display: grid
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr))
-        column-gap: 80px
-    @media (min-width: 1120px)
-        padding: 50px 60px 0 60px
+    @media (min-width: 1360px)
+        grid-template-columns: repeat(4, minmax(280px, 1fr))
 
+.less-tiles
+    @media (min-width: 280px)
+        grid-template-columns: repeat(1, minmax(280px, 1fr))
+    @media (min-width: 1040px)
+        grid-template-columns: repeat(2, minmax(280px, 1fr))
+    @media (min-width: 1360px)
+        grid-template-columns: repeat(3, minmax(280px, 1fr))
+
+.more-tiles
+    @media (min-width: 280px)
+        grid-template-columns: repeat(2, minmax(140px, 1fr))
+    @media (min-width: 1040px)
+        grid-template-columns: repeat(3, minmax(280px, 1fr))
+    @media (min-width: 1360px)
+        grid-template-columns: repeat(4, minmax(280px, 1fr))
 .error-message
     font-size: 20px
     padding-top: 190px

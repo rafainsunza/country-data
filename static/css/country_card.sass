@@ -1,31 +1,45 @@
-.country-card
-    background-color: var(--element-background-color)
-    box-shadow: var(--box-shadow)
-    border-radius: 5px
-    width: 280px
-    height: 375px
-    padding: 0 0 40px 0
-    margin: 0px auto 80px auto
-    @media (min-width: 1490px)
-        width: 100%
-
 .country
+    &-card
+        width: 100%
+        background-color: var(--element-background-color)
+        box-shadow: var(--box-shadow)
+        border-radius: 5px
+        padding: 0 0 20px 0
+        margin-bottom: 20px
+        @media (min-width: 600px)
+            margin-bottom: 80px
+            padding: 0 0 40px 0
     &-flag
         width: 100%
-        height: 185px
+        aspect-ratio: 16 / 9
         object-fit: cover
         border-radius: 5px 5px 0 0
     &-name
-        font-size: 18px
+        text-align: center
+        font-size: 14px
         font-weight: var(--boldest)
-        padding: 25px 20px
-
+        padding: 15px 10px
+        @media (min-width: 600px)
+            font-size: 18px
+            padding: 25px 20px
+            text-align: start
 .card
     &-ul
-        padding: 0 20px
+        text-align: center
+        padding: 0 10px
+        @media (min-width: 600px)
+            padding: 0 20px
+            text-align: start
     &-li
+        display: flex
+        flex-direction: column
         padding: 5px 0
+        @media (min-width: 600px)
+            flex-direction: row
 
-.span-category
-    font-weight: var(--bold)
-    font-size: 16px
+.span
+    &-category
+        font-weight: var(--bold)
+        font-size: 12px
+    &-value
+        font-size: 12px

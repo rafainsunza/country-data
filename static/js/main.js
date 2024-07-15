@@ -5,11 +5,6 @@ const body = document.querySelector('body');
 let maxPagesReached = false;
 let loadingData = false;
 let selectedCountry;
-const darkModeIsOn = localStorage.getItem('dark-mode') === 'enabled';
-
-localStorage.getItem('dark-mode') === null ?
-    localStorage.setItem('dark-mode', 'disabled') :
-    body.classList.toggle('dark-mode', localStorage.getItem('dark-mode') !== 'disabled');
 
 const fetchData = (dataKeys) => {
     return fetch('./static/data/data.json')
@@ -67,21 +62,18 @@ const displayLoader = (display) => {
 }
 
 const toggleDarkMode = () => {
-    if (localStorage.getItem('dark-mode') === 'disabled') {
+    const cookies = getCookies();
+    const darkModeCookie = cookies.find((cookie) => cookie.name.includes('dark-mode'));
+
+    if (darkModeCookie.value === 'disabled') {
         body.classList.toggle('dark-mode');
-        localStorage.setItem('dark-mode', 'enabled')
-    } else {
-        body.classList.toggle('dark-mode');
-        localStorage.setItem('dark-mode', 'disabled');
+        setCookie('dark-mode', 'enabled', 365);
     }
 
-
+    if (darkModeCookie.value === 'enabled') {
+        body.classList.toggle('dark-mode');
+        setCookie('dark-mode', 'disabled', 365);
+    }
 }
 
 darkModeBtn.addEventListener('click', toggleDarkMode);
-
-
-
-
-
-
