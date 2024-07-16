@@ -1,4 +1,19 @@
-const detailedInfo = ['flag', 'name', 'nativeName', 'population', 'region', 'subregion', 'capital', 'topLevelDomain', 'currencies', 'languages', 'borders', 'alpha3Code'];
+import { displayLoader } from "./utils.js";
+
+const detailedInfo = [
+    'flag',
+    'name',
+    'nativeName',
+    'population',
+    'region',
+    'subregion',
+    'capital',
+    'topLevelDomain',
+    'currencies',
+    'languages',
+    'borders',
+    'alpha3Code'
+];
 const detailedCountryCard = document.querySelector('.detailed-country-card');
 const backBtn = document.querySelector('.back-btn');
 
@@ -121,13 +136,7 @@ const displaySelectedCountry = () => {
         });
 }
 
-const handleBackBtnClick = () => {
-    history.back()
-}
-
-displaySelectedCountry();
-
-backBtn.addEventListener('click', handleBackBtnClick)
+export { backBtn, displaySelectedCountry }
 
 
 

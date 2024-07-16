@@ -1,79 +1,52 @@
-const countryCardContainer = document.querySelector('.country-card-container');
-const darkModeBtn = document.querySelector('.contrast-button');
-const body = document.querySelector('body');
+import {
+    displayInitialCountries,
+    displayMoreCountries,
+    addRegionsToSelectDropdown,
+    tileBtns,
+    searchInputBtn,
+    setSearch,
+    changeGridLayout,
+    openSelectedCountryPage
+} from "./modules/country_cards.js"
 
-let maxPagesReached = false;
-let loadingData = false;
-let selectedCountry;
+import { backBtn, displaySelectedCountry } from "./modules/country_details.js";
 
-const fetchData = (dataKeys) => {
-    return fetch('./static/data/data.json')
-        .then((response) => response.json())
-        .then((data) => {
-            const requestedData = data.map((country) => {
-                const result = {};
-                dataKeys.forEach((dataKey) => {
-                    if (country.hasOwnProperty(dataKey)) {
-                        result[dataKey] = country[dataKey];
-                    }
-                });
-                return result;
-            });
+import {
+    setFilter,
+    toggleDarkMode,
+    openDropDown,
+    handleBackBtnClick
+} from "./modules/event_handlers.js";
 
-            return requestedData;
-        })
-        .catch(() => {
-            displayLoader(false);
-            maxPagesReached = true;
-            let errorMessageContainer = countryCardContainer.querySelector('.error-message');
+import {
+    selectDropDown,
+    selectBtn,
+    darkModeBtn,
+    setInitialCookies,
+    countryCardContainer
+} from "./modules/utils.js";
 
-            if (!errorMessageContainer) {
-                errorMessageContainer = document.createElement('div');
-                errorMessageContainer.classList.add('error-message');
+if (window.location.pathname === '/index.html') {
+    displayInitialCountries();
+    addRegionsToSelectDropdown();
 
-                errorMessageContainer.innerHTML = `
-                    <p>Something went wrong, please try again later...</p>
-                `;
-
-                countryCardContainer.appendChild(errorMessageContainer);
-            }
-
-        })
+    tileBtns.forEach((button) => button.addEventListener('click', changeGridLayout));
+    selectBtn.addEventListener('click', openDropDown);
+    selectDropDown.addEventListener('click', setFilter);
+    searchInputBtn.addEventListener('click', setSearch);
+    countryCardContainer.addEventListener('click', openSelectedCountryPage);
+    window.addEventListener('scroll', displayMoreCountries);
 }
 
-const displayLoader = (display) => {
-    loadingData = display;
+if (window.location.pathname === '/pages/country.html') {
+    displaySelectedCountry();
 
-    if (display) {
-        const loader = document.createElement('div');
-        loader.classList.add('loader');
-        loader.innerHTML = `
-        <i class="fa-solid fa-spinner"></i>
-        `;
-
-        body.appendChild(loader);
-    } else {
-        const loader = document.querySelector('.loader');
-
-        if (loader && loader.parentNode === body) {
-            body.removeChild(loader);
-        }
-    }
+    backBtn.addEventListener('click', handleBackBtnClick);
 }
 
-const toggleDarkMode = () => {
-    const cookies = getCookies();
-    const darkModeCookie = cookies.find((cookie) => cookie.name.includes('dark-mode'));
-
-    if (darkModeCookie.value === 'disabled') {
-        body.classList.toggle('dark-mode');
-        setCookie('dark-mode', 'enabled', 365);
-    }
-
-    if (darkModeCookie.value === 'enabled') {
-        body.classList.toggle('dark-mode');
-        setCookie('dark-mode', 'disabled', 365);
-    }
-}
-
+setInitialCookies();
 darkModeBtn.addEventListener('click', toggleDarkMode);
+
+
+
+
