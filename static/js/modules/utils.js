@@ -1,3 +1,35 @@
+const body = document.querySelector('body');
+const countryCardContainer = document.querySelector('.country-card-container');
+const selectDropDown = document.querySelector('.select-dropdown');
+const selectBtn = document.querySelector('.select-button');
+const darkModeBtn = document.querySelector('.contrast-button');
+
+const search = { active: false };
+const filter = { active: false, name: '' };
+const pages = { maxPagesReached: false, pageCount: 1 };
+let loadingData = false;
+
+
+const displayLoader = (display) => {
+    loadingData = display;
+
+    if (display) {
+        const loader = document.createElement('div');
+        loader.classList.add('loader');
+        loader.innerHTML = `
+        <i class="fa-solid fa-spinner"></i>
+        `;
+
+        body.appendChild(loader);
+    } else {
+        const loader = document.querySelector('.loader');
+
+        if (loader && loader.parentNode === body) {
+            body.removeChild(loader);
+        }
+    }
+}
+
 const setCookie = (cookieName, cookieValue, expirationDays) => {
     const date = new Date();
     date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000)); // Convert expiration days to miliseconds
@@ -32,6 +64,23 @@ const setInitialCookies = () => {
         body.classList.toggle('dark-mode', darkModeCookie.value === 'enabled');
 }
 
+// variables
+export {
+    body,
+    countryCardContainer,
+    darkModeBtn,
+    selectDropDown,
+    selectBtn,
+    loadingData,
+    pages,
+    filter,
+    search
+}
 
-
-setInitialCookies();
+// functions
+export {
+    displayLoader,
+    setCookie,
+    getCookies,
+    setInitialCookies,
+}

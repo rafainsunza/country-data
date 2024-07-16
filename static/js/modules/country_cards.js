@@ -1,33 +1,38 @@
-const selectDropDown = document.querySelector('.select-dropdown');
-const selectBtn = document.querySelector('.select-button');
+import {
+    countryCardContainer,
+    displayLoader,
+    loadingData,
+    selectDropDown,
+    selectBtn,
+    pages,
+    filter,
+    search
+} from "./utils.js";
+import { fetchData } from "./data.js";
+
 const searchInput = document.querySelector('.search-input');
 const searchInputBtn = document.querySelector('.search-input-button');
 const tileBtns = document.querySelectorAll('.tile-btn');
 
-const cardInfo = ['flag', 'name', 'population', 'region', 'capital'];
-const cardsPerPage = 12;
-let pageCount = 1;
-let filterActive = false;
-let searchActive = false;
-let activeFilter;
+const cards = { info: ['flag', 'name', 'population', 'region', 'capital'], perPage: 12 }
 let activeSearch;
-
+let selectedCountry;
 
 const displayInitialCountries = () => {
     countryCardContainer.innerHTML = '';
 
     displayLoader(true);
 
-    fetchData(cardInfo)
+    fetchData(cards.info)
         .then((data) => {
             let initialCountryData = data;
 
-            if (filterActive && !searchActive) {
-                initialCountryData = data.filter((country) => country.region.toLowerCase() === activeFilter);
-                initialCountryData.length <= cardsPerPage ? maxPagesReached = true : null;
-            } else if (searchActive && !filterActive) {
+            if (filter.active && !search.active) {
+                initialCountryData = data.filter((country) => country.region.toLowerCase() === filter.name);
+                initialCountryData.length <= cards.perPage ? pages.maxPagesReached = true : null;
+            } else if (search.active && !filter.active) {
                 initialCountryData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase()));
-                initialCountryData.length <= cardsPerPage ? maxPagesReached = true : null;
+                initialCountryData.length <= cards.perPage ? pages.maxPagesReached = true : null;
 
                 if (initialCountryData.length < 1 || activeSearch.trim() === '') {
                     const errorContainer = document.createElement('div');
@@ -42,7 +47,7 @@ const displayInitialCountries = () => {
                 }
             }
 
-            initialCountryData = initialCountryData.slice(0, cardsPerPage);
+            initialCountryData = initialCountryData.slice(0, cards.perPage);
 
             displayCards(initialCountryData);
             displayLoader(false);
@@ -50,32 +55,32 @@ const displayInitialCountries = () => {
 }
 
 const displayMoreCountries = () => {
-    if (!maxPagesReached && !loadingData && Math.abs(document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight) <= 25) {
-        const startIndex = pageCount * cardsPerPage;
-        const endIndex = (pageCount * cardsPerPage) + cardsPerPage;
+    if (!pages.maxPagesReached && !loadingData && Math.abs(document.documentElement.scrollHeight - document.documentElement.scrollTop - document.documentElement.clientHeight) <= 25) {
+        const startIndex = pages.pageCount * cards.perPage;
+        const endIndex = (pages.pageCount * cards.perPage) + cards.perPage;
         let maxPages;
-        pageCount++;
+        pages.pageCount++;
         displayLoader(true);
 
-        fetchData(cardInfo)
+        fetchData(cards.info)
             .then((data) => {
                 let filteredData = data;
 
-                if (filterActive && !searchActive) {
-                    filteredData = data.filter((country) => country.region.toLowerCase() === activeFilter);
-                } else if (searchActive && !filterActive) {
+                if (filter.active && !search.active) {
+                    filteredData = data.filter((country) => country.region.toLowerCase() === filter.name);
+                } else if (search.active && !filter.active) {
                     filteredData = data.filter((country) => country.name.toLowerCase().includes(activeSearch.toLowerCase()));
                 }
 
-                maxPages = Math.ceil(filteredData.length / cardsPerPage);
+                maxPages = Math.ceil(filteredData.length / cards.perPage);
 
-                if (pageCount <= maxPages) {
+                if (pages.pageCount <= maxPages) {
                     const moreCountryData = filteredData.slice(startIndex, endIndex);
                     displayCards(moreCountryData);
                 }
 
-                if (pageCount === maxPages) {
-                    maxPagesReached = true
+                if (pages.pageCount === maxPages) {
+                    pages.maxPagesReached = true
                 }
 
                 displayLoader(false);
@@ -146,38 +151,11 @@ const addRegionsToSelectDropdown = () => {
         }));
 }
 
-const setFilter = (event) => {
-    pageCount = 1;
-    maxPagesReached = false;
-
-    filterActive = true;
-    searchActive = false;
-
-    const li = event.target.closest('li');
-    const input = li.querySelector('input');
-
-    if (input.id === 'all') {
-        filterActive = false;
-    }
-    activeFilter = input.id;
-
-
-    // Remove all active-filter classes so a new one can be set
-    const dropdownOptions = selectDropDown.querySelectorAll('.dropdown-option');
-    dropdownOptions.forEach((option) => { option.classList.remove('active-filter') });
-    li.classList.add('active-filter');
-
-    selectBtn.firstElementChild.innerText = input.labels[0].innerText;
-    selectDropDown.classList.toggle('active');
-
-    displayInitialCountries();
-}
-
 const setSearch = (event) => {
-    pageCount = 1;
+    pages.pageCount = 1;
 
-    searchActive = true;
-    filterActive = false;
+    search.active = true;
+    filter.active = false;
 
     activeSearch = '';
     activeSearch = searchInput.value;
@@ -233,16 +211,14 @@ const openSelectedCountryPage = (event) => {
 
 }
 
-displayInitialCountries();
-addRegionsToSelectDropdown();
-
-
-selectBtn.addEventListener('click', (event) => {
-    selectDropDown.classList.toggle('active');
-});
-selectDropDown.addEventListener('click', setFilter);
-searchInputBtn.addEventListener('click', setSearch);
-countryCardContainer.addEventListener('click', openSelectedCountryPage);
-tileBtns.forEach((button) => button.addEventListener('click', changeGridLayout));
-window.addEventListener('scroll', displayMoreCountries);
-
+export {
+    displayInitialCountries,
+    displayMoreCountries,
+    addRegionsToSelectDropdown,
+    displayCards,
+    changeGridLayout,
+    setSearch,
+    openSelectedCountryPage,
+    tileBtns,
+    searchInputBtn
+}
