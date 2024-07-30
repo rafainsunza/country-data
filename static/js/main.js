@@ -6,7 +6,8 @@ import {
     searchInputBtn,
     setSearch,
     changeGridLayout,
-    openSelectedCountryPage
+    openSelectedCountryPage,
+    searchInput
 } from "./modules/country_cards.js"
 
 import { backBtn, displaySelectedCountry } from "./modules/country_details.js";
@@ -34,6 +35,7 @@ if (window.location.pathname === '/index.html') {
     selectBtn.addEventListener('click', openDropDown);
     selectDropDown.addEventListener('click', setFilter);
     searchInputBtn.addEventListener('click', setSearch);
+    searchInput.addEventListener('keydown', setSearch);
     countryCardContainer.addEventListener('click', openSelectedCountryPage);
     window.addEventListener('scroll', displayMoreCountries);
 }

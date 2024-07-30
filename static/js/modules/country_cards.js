@@ -152,18 +152,20 @@ const addRegionsToSelectDropdown = () => {
 }
 
 const setSearch = (event) => {
-    pages.pageCount = 1;
+    if (event.target.closest('button') || event.key === 'Enter') {
+        pages.pageCount = 1;
 
-    search.active = true;
-    filter.active = false;
+        search.active = true;
+        filter.active = false;
 
-    activeSearch = '';
-    activeSearch = searchInput.value;
+        activeSearch = '';
+        activeSearch = searchInput.value;
 
-    displayInitialCountries();
+        displayInitialCountries();
 
-    searchInput.value = '';
-    selectBtn.firstElementChild.innerText = 'Filter by Region';
+        searchInput.value = '';
+        selectBtn.firstElementChild.innerText = 'Filter by Region';
+    }
 }
 
 const changeGridLayout = (event) => {
@@ -220,5 +222,6 @@ export {
     setSearch,
     openSelectedCountryPage,
     tileBtns,
-    searchInputBtn
+    searchInputBtn,
+    searchInput
 }
